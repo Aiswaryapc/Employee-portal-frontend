@@ -1,0 +1,60 @@
+.sbody{
+    background-image: url(/src/components/img/login.png);
+    height:69rem;
+    background-position: center;
+    /* margin-top: 0px; */
+    background-size: cover;
+    background-repeat: no-repeat;   
+}
+
+.swelcome{
+    color: #cf99bc;
+    font-weight: 4rem;
+    font-weight: 700;
+    padding-bottom: 0rem;
+}
+/* .sform{
+    margin-top: 0px;
+    padding-top: 8rem;
+    padding-left: 10rem;
+    font-size: 0.5rem;
+
+} */
+.sinput{
+    padding:0.6rem;
+    width: 17.2rem;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    height: 2.5rem;
+}
+
+.slabel{
+    color: #cf99bc;
+    padding-bottom: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.error{
+    font-weight : bold;
+    color: white;
+    font-size: 1rem;
+    
+}
+.linktext{
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+.link{
+    color: #cf99bc;
+}
+.subtn{
+background-color: #cf99bc;
+color: #861f41;
+font-size: 20px;
+flex-wrap: wrap;
+padding: 10px 104px;
+border-radius: 5px;
+margin: 2.4rem 0px;
+cursor: pointer;
+}
