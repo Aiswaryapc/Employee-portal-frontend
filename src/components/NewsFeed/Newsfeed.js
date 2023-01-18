@@ -16,7 +16,7 @@ function Newsfeed(props) {
     });
 
 
-  },);
+  },[]);
 
 
 
@@ -80,8 +80,6 @@ function Newsfeed(props) {
                                             setComment({ ...comment, comment: e.target.value })
                                           }></textarea>
                                       </div>
-
-
                                     </div>
                                   </div>
                                 </Accordion.Header>
@@ -92,17 +90,17 @@ function Newsfeed(props) {
 
                                       </div>
                                     </div>
-                                    {item?.post?.map((item1, index1) => {
+                                    {item?.comment?.map((item1, index1) => {
                                       return (
                                         <div className="row p-3" key={index1}>
 
-
-                                          <div className={styles.itemName}>
-                                            {item1?.comment?.comment}
-                                          </div>
                                           <div className={styles.itemDes}>
-                                            {item1?.comment?.employee?.name}
+                                            {item1?.employee?.name}
                                           </div>
+                                          <div className={styles.itemName}>
+                                            {item1?.comment}
+                                          </div>
+                                        
 
                                         </div>
 

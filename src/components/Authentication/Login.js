@@ -62,7 +62,6 @@ function Login() {
                           />
                         </label>
                         <br></br>
-
                         <button
                           className="sbtn"
                           onClick={(e) => {
