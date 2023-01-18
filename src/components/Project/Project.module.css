@@ -1,31 +1,71 @@
-.crdSetup{
+.pcrdSetup {
     border: 0px;
+    background-color: #e2d7dd;
 }
-.btnStyle{
+
+.btnStyle {
     border: 0px;
     background-color: transparent;
     font-size: large;
 }
-.counterSet{
+
+.counterSet {
     padding-right: 5px;
 }
-.products{
+
+.products {
     padding-top: 10%;
 }
-.bcolor{
+
+.bcolor {
     background-color: #cf99bc;
 }
-.cwidth{
+
+.cwidth {
     width: 300rem;
 }
+
 .dialog {
     box-shadow: 0 8px 6px -6px black;
     position: static;
     left: 20%;
     top: 10%;
-  }
-  
-  .image {
+}
+
+.image {
     width: 300px;
-  }
-  
+}
+
+.ptext {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.pheading {
+    color: #692038;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.pmheading {
+    color: #692038;
+    font-weight: 800;
+    font-size: 2.0rem;
+    padding-left: 1.5rem;
+}
+
+
+.ptext1 {
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.zoom:hover {
+    transform: scale(1.2);
+    /* (150% zoom)*/
+}
+
+.photo {
+    height:40rem;
+    width: 90rem;
+}

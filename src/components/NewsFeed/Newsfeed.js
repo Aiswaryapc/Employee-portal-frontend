@@ -39,7 +39,7 @@ function Newsfeed(props) {
                   return (
                     <div className={"col-12 col-md-12 pb-5 pt-3"} key={index}>
                       <div className='bcolor'>
-                        <div className={"card m-8 p-1 shadow-sm " + styles.crdSetup}>
+                        <div className={"card m-8 p-1 shadow-sm " + styles.ncrdSetup}>
 
                           <div className="row g-0">
                             <div
@@ -65,9 +65,9 @@ function Newsfeed(props) {
                               </div>
                             </div>
 
-                            <Accordion>
-                              <Accordion.Item eventKey="0">
-                                <Accordion.Header>
+                            <Accordion >
+                              <Accordion.Item eventKey="0" color='#e2d7dd'>
+                                <Accordion.Header className={styles.ncrdSetup} >
                                   <div className={"col-md-11"}>
                                     <div className={"d-flex mx-auto"}>
 
