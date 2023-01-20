@@ -1,26 +1,49 @@
 .ncrdSetup {
     border: 0px;
-    background-color: #e2d7dd;
+    background-color: #F0E5EB;
 }
-
+.display{
+    display: flex;
+    position: relative;
+    margin-left: 11rem;
+}
 .btnStyle{
     border: 0px;
     background-color: transparent;
     font-size: large;
 }
-.counterSet{
-    padding-right: 5px;
-}
-.products{
-    padding-top: 10%;
-}
+
+
 .bcolor{
-    background-color: #cf99bc;
+    background-color: #F0E5EB;
+    margin-bottom: 0.2rem;
 }
 .cwidth{
     width: 300rem;
 }
 .news{
     color: #692038;
+    font-weight: 600;
+    font-size: 2.0rem;
+    padding-left: 1.5rem;
+    padding-top: 2rem;
     
+}
+.nheading{
+    color: #692038;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+.comment{
+    margin-left: 1rem;
+    margin-top: 2rem;
+    scale: 2.0;
+    color: #692038;
+}
+.itemDes{
+    margin-left: 1.6rem;
+    font-weight: 500;
+}
+.itemcmt{
+    margin-left: 4.7rem;
 }

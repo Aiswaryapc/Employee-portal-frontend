@@ -16,7 +16,7 @@ function Login() {
     axios
       .post("http://localhost:8093/api/auth/token", user)
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data.roles.name);
         navigate("/newsfeed");
       })
       .catch((error) => {

@@ -67,7 +67,8 @@ function Project(props) {
 
     return (
 
-        <div>
+        <div className={styles.display}>
+             
             <div className="container p-0">
 
 
