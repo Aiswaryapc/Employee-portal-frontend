@@ -47,3 +47,18 @@
 .itemcmt{
     margin-left: 4.7rem;
 }
+.link{
+    color: white;
+}
+.nbutn{
+    background-color: white;
+color: #861f41;
+font-size: 20px;
+
+
+padding: 10px 80px;
+border-radius: 8px;
+border: 0.15rem solid #861f41;
+margin: 0rem 0px;
+cursor: pointer;
+}

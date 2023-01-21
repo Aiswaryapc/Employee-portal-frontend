@@ -1,41 +1,61 @@
-.cardBody{
+.cardBody {
     position: relative;
     background-color: #F0E5EB;
-    
+
 }
-.eheading{
+
+.eheading {
     color: #692038;
     font-weight: 600;
     font-size: 1.5rem;
-    
+
     padding-top: 0.1rem;
-    
+
 }
-.cardSetup{
+
+.cardSetup {
     /* height: 300px !important; */
     margin-top: 6%;
     border: 0px !important;
 }
-.headerCrd{
+
+.headerCrd {
     /* background-color: #F0E5EB; */
     border: 0px;
 }
-.display{
+
+.display {
     display: flex;
     position: relative;
     margin-left: 11rem;
 }
-.itemName{
+
+.itemName {
     padding-left: 2rem;
     padding-bottom: 2rem;
-    
+
 }
-.itemName1{
+
+.itemName1 {
     background-color: #F0E5EB;
     margin-bottom: 0.2rem;
     padding: 0.4rem;
 }
-.ptext1{
-padding-left: 5%;
-color: #692038;
+
+.ptext1 {
+    padding-left: 5%;
+    color: #692038;
+}
+
+.nbutn {
+    background-color: white;
+    color: #861f41;
+    font-size: 20px;
+
+
+    padding: 10px 80px;
+    border-radius: 8px;
+    border: 0.15rem solid #861f41;
+    margin: 0rem 0px;
+    cursor: pointer;
 }

@@ -3,18 +3,31 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Newsfeed.module.css";
 import Accordion from "react-bootstrap/Accordion";
-import NavBar from '../Nav/Navbar';
-import SideBar from '../Nav/SideBar';
 import { IoSend } from "react-icons/io5";
+
 function Comment(props) {
-    const [comment, setComment] = useState({
-        comment: "",
-        employeeName:"Aish",
-        newsfeedheading:props.posts.heading
-      });
+  const [emp, setEmp] = useState();
+  const [comment, setComment] = useState({
+    comment: "",
+    email:emp,
+    newsfeedheading:props.posts.heading
+  });
+  let empId = "";
+  useEffect(() => {
+    empId = localStorage.getItem("empId")
+
+    axios.get(`http://localhost:8093/api/test/emp/${empId}`).then((response) => {
+      setEmp(response.data.email);
+      console.log(response.data)
+      setComment({...comment,email:response.data.email})
+    });
+
+
+  }, []);
+    
       function postComment(e) {
         e.preventDefault();
-        console.log(comment);
+        
         axios
           .post("http://localhost:8093/api/test/comment/add", comment)
           .then((response) => {

@@ -90,28 +90,28 @@ function Employee(props) {
                                   })}
                                 </div>
                                 <div className={styles.itemName1}>
-                                  Age:  <span className={styles.ptext1}> {item?.age}</span>
+                                  Age          :  <span className={styles.ptext1}> {item?.age}</span>
                                 </div>
                                 <div className={styles.itemName1}>
-                                  Gender:  <span className={styles.ptext1}> {item?.gender}</span>
+                                  Gender        :  <span className={styles.ptext1}> {item?.gender}</span>
                                 </div>
                                 <div className={styles.itemName1}>
-                                  Supervisor:  <span className={styles.ptext1}> {item?.supervisor}</span>
+                                  Supervisor    :  <span className={styles.ptext1}> {item?.supervisor}</span>
                                 </div>
                                 <div className={styles.itemName1}>
-                                  Email:  <span className={styles.ptext1}> {item?.email}</span>
+                                  Email         :  <span className={styles.ptext1}> {item?.email}</span>
                                 </div>
                                 <div className={styles.itemName1}>
-                                  Mobile Number:  <span className={styles.ptext1}> {item?.mobileNumber}</span>
+                                  Mobile Number :  <span className={styles.ptext1}> {item?.mobileNumber}</span>
                                 </div>
                                 <div className={styles.itemName1}>
-                                  Address:  <span className={styles.ptext1}> {item?.address}</span>
+                                  Address       :  <span className={styles.ptext1}> {item?.address}</span>
                                 </div>
                                 <div className={styles.itemName1}>
-                                  City:  <span className={styles.ptext1}> {item?.city}</span>
+                                  City          :  <span className={styles.ptext1}> {item?.city}</span>
                                 </div>
                                 <div className={styles.itemName1}>
-                                  State:  <span className={styles.ptext1}> {item?.state}</span>
+                                  State         :  <span className={styles.ptext1}> {item?.state}</span>
                                 </div>
 
                               </div>

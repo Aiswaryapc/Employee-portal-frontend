@@ -3,10 +3,19 @@ import axios from "axios";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 
-
+let jwttoken = "";
+let role = "";
+let empId= "";
 
 function Login() {
-
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("token");
+    if (loggedInUser) {
+      role = localStorage.getItem("role");
+      jwttoken = loggedInUser;
+      empId=localStorage.getItem("empId")
+    }
+  }, []);
   const navigate = useNavigate();
   const [user, setUser] = useState({ email: "", password: "" });
 
@@ -16,7 +25,11 @@ function Login() {
     axios
       .post("http://localhost:8093/api/auth/token", user)
       .then((response) => {
-        console.log(response.data.roles.name);
+        console.log(response.data.roles[0].name);
+        jwttoken = response.data.accessToken;
+        localStorage.setItem("token", response.data.accessToken);
+        localStorage.setItem("role", response.data.roles[0].name);
+        localStorage.setItem("empId", response.data.id);
         navigate("/newsfeed");
       })
       .catch((error) => {

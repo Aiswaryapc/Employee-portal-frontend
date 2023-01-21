@@ -2,14 +2,45 @@ import React from 'react';
 import styles from "./AddNews.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function AddNews(props) {
-    const [news, setNews] = useState({
-        heading: "",
-        description: "",
-        image: "",
-        employeeName: "",
-        
-      });
+  const navigate = useNavigate();
+  const [emp, setEmp] = useState();
+  let empId = "";
+  const [news, setNews] = useState({
+    heading: "",
+    description: "",
+    image: "",
+    email: ""
+    
+  });
+  useEffect(() => {
+    empId = localStorage.getItem("empId")
+
+    axios.get(`http://localhost:8093/api/test/emp/${empId}`).then((response) => {
+      setEmp(response.data.email);
+      
+     setNews({...news,email:response.data.email})
+     
+    });
+
+  
+  }, []);
+    
+      function postNews(e) {
+        e.preventDefault();
+        console.log(news)
+        axios
+          .post("http://localhost:8093/api/test/newsFeed/add", news)
+          .then((response) => {
+            alert("Posted new news!!!");
+            navigate("/newsfeed");
+          }).catch((error) => {
+            alert("Description too long");
+            
+          });
+      }
+    
     return (
         <div><div className={styles.display}>
       <div className="container p-0">
@@ -79,7 +110,7 @@ function AddNews(props) {
                       <button
                           className={styles.subtn}
                           onClick={(e) => {
-                            
+                            postNews(e) 
                           }}
                         >
                           Post

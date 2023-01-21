@@ -8,7 +8,7 @@ import Accordion from "react-bootstrap/Accordion";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
-
+import { Link, useNavigate } from "react-router-dom";
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     paper: {
         position: 'absolute',
         width: 1500,
-       
+
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
@@ -44,13 +44,22 @@ const useStyles = makeStyles(theme => ({
 function Project(props) {
 
     const [project, setProject] = useState([]);
-    useEffect(() => {
 
+    const [showButton, setShowButton] = useState(false);
+    let role = "";
+    const navigate = useNavigate();
+    useEffect(() => {
+        role = localStorage.getItem("role")
 
         axios.get(`http://localhost:8093/api/test/projects`).then((response) => {
             setProject(response.data);
         });
 
+        if ((role === "ROLE_ADMIN")||(role === "ROLE_MANAGER")) {
+            setShowButton(true)
+        } else {
+            setShowButton(false)
+        }
 
     }, []);
 
@@ -68,7 +77,7 @@ function Project(props) {
     return (
 
         <div className={styles.display}>
-             
+
             <div className="container p-0">
 
 
@@ -81,6 +90,14 @@ function Project(props) {
                             <h2 className="mt-1 mb-5 pb-1">
                                 <p className={styles.pmheading}>Projects</p>
                             </h2>
+                            <div style={{ display: "flex" }}>
+
+                                {showButton && <button style={{ marginLeft: "auto" }} onClick={(e) => {
+                                    navigate("/addProject");
+                                }} className={styles.nbutn}>Add New Project</button>}
+
+
+                            </div>
                             <div className="row">
                                 {project.map((item, index) => {
                                     return (
@@ -100,19 +117,19 @@ function Project(props) {
 
                                                             }} onClick={handleOpen}
                                                         ></div>
-                            <Modal
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-                open={open}
-                onClose={handleClose}
-            >
-                <div style={modalStyle} className={classes.paper}>
-                    <h2>Flowchart</h2>
-                   
-                   <img src={item?.flowChart}  className={styles.photo}></img>
-                   
-                </div>
-            </Modal>
+                                                        <Modal
+                                                            aria-labelledby="simple-modal-title"
+                                                            aria-describedby="simple-modal-description"
+                                                            open={open}
+                                                            onClose={handleClose}
+                                                        >
+                                                            <div style={modalStyle} className={classes.paper}>
+                                                                <h2>Flowchart</h2>
+
+                                                                <img src={item?.flowChart} className={styles.photo}></img>
+
+                                                            </div>
+                                                        </Modal>
 
                                                         <div className="col-md-8" style={{ padding: "2%" }}>
                                                             <div className="card-body">
@@ -127,7 +144,7 @@ function Project(props) {
 
                                                             </div>
                                                         </div>
-                            
+
 
                                                         <Accordion>
                                                             <Accordion.Item eventKey="0">
@@ -213,7 +230,7 @@ function Project(props) {
                                                             </Accordion.Item>
                                                         </Accordion>
 
-                                                  
+
                                                     </div>
                                                 </div>
 
@@ -222,9 +239,9 @@ function Project(props) {
 
 
 
-                     
+
                                         </div>
-                                        
+
 
                                     );
                                 })}

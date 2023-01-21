@@ -1,19 +1,27 @@
-    import React from 'react';
-    import styles from "./Stakeholders.module.css";
-    import { useEffect, useState } from "react";
+import React from 'react';
+import styles from "./Stakeholders.module.css";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Accordion from "react-bootstrap/Accordion";
-    function Stakeholders(props) {
-        const [emp, setEmp] = useState([]);
+import { Link, useNavigate } from "react-router-dom";
 
+function Stakeholders(props) {
+  const [emp, setEmp] = useState([]);
+  const [showButton, setShowButton] = useState(false);
+    let role = "";
+    const navigate = useNavigate();
   useEffect(() => {
-
+    role = localStorage.getItem("role")
 
     axios.get(`http://localhost:8093/api/test/stakeholders`).then((response) => {
       setEmp(response.data);
 
     });
-
+    if (role === "ROLE_ADMIN") {
+      setShowButton(true)
+    } else {
+      setShowButton(false)
+    }
 
   }, []);
 
@@ -29,6 +37,14 @@ import Accordion from "react-bootstrap/Accordion";
               <div className={"card shadow " + styles.cardSetup}>
                 <div className={"card-header " + styles.headerCrd}>
                   <div className={"text-center " + styles.eheading}>Stakeholders</div>
+                  <div style={{ display: "flex" }}>
+                    
+                    {showButton &&   <button style={{ marginLeft: "auto" }} onClick={(e) => {
+                               navigate("/addStakeholder");
+                            }} className={styles.nbutn}>Add New Stakeholder</button>}
+                    
+                 
+                    </div>
                 </div>
 
                 <div
@@ -54,10 +70,10 @@ import Accordion from "react-bootstrap/Accordion";
                                   <span className={styles.itemName}>
                                     {item?.name}
                                   </span>
-                                 
-                                      <span className={styles.ptext1}> {item?.organaization}</span>
-                                    
-                                 
+
+                                  <span className={styles.ptext1}> {item?.organaization}</span>
+
+
 
                                 </div>
                               </div>
@@ -81,18 +97,18 @@ import Accordion from "react-bootstrap/Accordion";
                                   Name:  <span className={styles.ptext1}> {item?.name}</span>
                                 </div>
                                 <div className={styles.itemName1}>
-                                  Organization:  
-                                      <span className={styles.ptext1}> {item?.organaization}</span>
-                                   
+                                  Organization:
+                                  <span className={styles.ptext1}> {item?.organaization}</span>
+
                                 </div>
                                 <div className={styles.itemName1}>
                                   Position:  <span className={styles.ptext1}> {item?.position}</span>
                                 </div>
-                                
+
                                 <div className={styles.itemName1}>
                                   Email:  <span className={styles.ptext1}> {item?.email}</span>
                                 </div>
-                                
+
                                 <div className={styles.itemName1}>
                                   State:  <span className={styles.ptext1}> {item?.state}</span>
                                 </div>
@@ -117,7 +133,7 @@ import Accordion from "react-bootstrap/Accordion";
       </div>
     </div>
     </div>
-        );
-    }
-    
-    export default Stakeholders;
+  );
+}
+
+export default Stakeholders;

@@ -13,6 +13,7 @@ import AddNews from "./components/Admin/AddNews";
 import AddProduct from "./components/Admin/AddProduct";
 import AddProject from "./components/Admin/AddProject";
 import AddStakeholder from "./components/Admin/AddStakeholder";
+import ProtectedRoutes from "./InProtectedRoutes";
 function App() {
   return (
     
@@ -30,7 +31,7 @@ function App() {
       <Routes>
         
      
-       
+      <Route element={<ProtectedRoutes />}>
         
         <Route path="/newsfeed" element={<Newsfeed/>} />
         <Route path="/project" element={<Project/>} />
@@ -41,8 +42,9 @@ function App() {
         <Route path="/addProduct" element={<AddProduct/>} />
         <Route path="/addProject" element={<AddProject/>} />
         <Route path="/addStakeholder" element={<AddStakeholder/>} />
-        </Routes>
         
+        </Route>
+        </Routes>
       </Router>
     
   );

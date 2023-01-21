@@ -10,12 +10,14 @@ import {
   CDBSidebarMenuItem,
 } from 'cdbreact';
 import { NavLink } from 'react-router-dom';
+import { FcManager } from "react-icons/fc";
+import { GrStakeholder } from "react-icons/gr";
 
 const Sidebar = () => {
   return (
     
     <div
-      style={{ display: 'flex', height: '75vh', overflow: 'scroll initial' ,marginLeft:'5rem',marginTop:'5rem',marginBottom:'5rem',position:'fixed'}}
+      style={{ display: 'flex', height: '75vh', overflow: 'scroll initial' ,marginLeft:'5rem',marginTop:'8rem',marginBottom:'5rem',position:'fixed'}}
     >
       <CDBSidebar textColor="#692038" backgroundColor="#F0E5EB">
       <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
@@ -34,18 +36,19 @@ const Sidebar = () => {
               <CDBSidebarMenuItem icon="columns">NewsFeed</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/employee" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="table">Employees</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="users">Employees</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/profile" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">Documents</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="book">Documents</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/analytics" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="chart-line">
+            {/* <NavLink exact to="/analytics" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="users" >
+             
                 Managers
               </CDBSidebarMenuItem>
-            </NavLink>
+            </NavLink> */}
             <NavLink exact to="/analytics" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="chart-line">
+              <CDBSidebarMenuItem icon="list">
                Products
               </CDBSidebarMenuItem>
             </NavLink>
@@ -55,7 +58,8 @@ const Sidebar = () => {
               </CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/stakeholders" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="chart-line">
+              <CDBSidebarMenuItem icon="users">
+             
                 Stakeholders
               </CDBSidebarMenuItem>
             </NavLink>

@@ -46,3 +46,7 @@
 .sidebarListItems.active, .sidebarListItems:hover{
     background-color: rgb(219, 215, 216);
 }
+.spadding{
+margin-right: 1.1rem;
+color: #692038;
+}
