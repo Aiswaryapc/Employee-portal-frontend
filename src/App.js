@@ -14,6 +14,8 @@ import AddProduct from "./components/Admin/AddProduct";
 import AddProject from "./components/Admin/AddProject";
 import AddStakeholder from "./components/Admin/AddStakeholder";
 import ProtectedRoutes from "./InProtectedRoutes";
+
+import Product from "./components/Product/Product";
 function App() {
   return (
     
@@ -42,6 +44,9 @@ function App() {
         <Route path="/addProduct" element={<AddProduct/>} />
         <Route path="/addProject" element={<AddProject/>} />
         <Route path="/addStakeholder" element={<AddStakeholder/>} />
+        <Route path="/product" element={<Product/>} />
+
+       
         
         </Route>
         </Routes>

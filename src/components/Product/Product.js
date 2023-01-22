@@ -2,13 +2,14 @@
 import React, { Component } from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./Project.module.css";
+import styles from "./Product.module.css";
 import Accordion from "react-bootstrap/Accordion";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
-import { Link, useNavigate } from "react-router-dom";
+import SingleProductpage from "./singleProductpage";
+
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -31,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     paper: {
         position: 'absolute',
         width: 1500,
-
+       
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
@@ -41,29 +42,20 @@ const useStyles = makeStyles(theme => ({
 
 
 
-function Project(props) {
+function Product(props) {
 
-    const [project, setProject] = useState([]);
-
-    const [showButton, setShowButton] = useState(false);
-    let role = "";
-    const navigate = useNavigate();
+    const [product, setProduct] = useState([]);
     useEffect(() => {
-        role = localStorage.getItem("role")
 
-        axios.get(`http://localhost:8093/api/test/projects`).then((response) => {
-            setProject(response.data);
+
+        axios.get(`http://localhost:8093/api/test/product/`).then((response) => {
+            setProduct(response.data);
         });
 
-        if ((role === "ROLE_ADMIN")||(role === "ROLE_MANAGER")) {
-            setShowButton(true)
-        } else {
-            setShowButton(false)
-        }
 
     }, []);
 
-
+    const [isOpen, setIsOpen] = useState(false);
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
@@ -74,11 +66,18 @@ function Project(props) {
         setOpen(false);
     };
     const [modalData, setModalData] = useState(null);
+    const [openModal, setOpenModal] = useState();
+   const modelOpen=(id) =>{ if (openModal === id) {
+        setOpen (true)
+    }}
+
+    const handleClick = (item) => {
+        <singleProductpage data= {item}/>
+      }
 
     return (
 
-        <div className={styles.display}>
-
+        <div>
             <div className="container p-0">
 
 
@@ -89,18 +88,10 @@ function Project(props) {
 
 
                             <h2 className="mt-1 mb-5 pb-1">
-                                <p className={styles.pmheading}>Projects</p>
+                                <p className={styles.pmheading}>Products</p>
                             </h2>
-                            <div style={{ display: "flex" }}>
-
-                                {showButton && <button style={{ marginLeft: "auto" }} onClick={(e) => {
-                                    navigate("/addProject");
-                                }} className={styles.nbutn}>Add New Project</button>}
-
-
-                            </div>
                             <div className="row">
-                                {project.map((item, index) => {
+                                {product.map((item, index) => {
                                     return (
                                         <div className={"col-12 col-md-4 pb-5 pt-3"} key={index}>
                                             <div className={styles.zoom}>
@@ -112,34 +103,34 @@ function Project(props) {
                                                             className="col-md-4"
 
                                                             style={{
-                                                                backgroundImage: `url(${item?.flowChart})`,
+                                                                backgroundImage: `url(${item?.imageUrl})`,
                                                                 backgroundRepeat: "no-repeat",
-                                                                backgroundSize: "cover",
+                                                                backgroundSize: "contain",
 
                                                             }} onClick={()=> {
                                                                 setOpen(true);
                                                                 
                                                                 setModalData(item);}}
                                                         ></div>
-                                                        <Modal
-                                                            aria-labelledby="simple-modal-title"
-                                                            aria-describedby="simple-modal-description"
-                                                            open={open}
-                                                            onClose={handleClose}
-                                                        >
-                                                            <div style={modalStyle} className={classes.paper}>
-                                                                <h2>Flowchart</h2>
-
-                                                                <img src={modalData?.flowChart} className={styles.photo}></img>
-
-                                                            </div>
-                                                        </Modal>
+                            <Modal
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+                open={open}
+                onClose={handleClose}
+            >
+                <div style={modalStyle} className={classes.paper}>
+                    <h2>Image</h2>
+                   
+                   <img src={modalData?.detailedImageUrl}  className={styles.photo}></img>
+                   
+                </div>
+            </Modal>
 
                                                         <div className="col-md-8" style={{ padding: "2%" }}>
                                                             <div className="card-body">
-                                                                <h5 className="card-title"><div className={styles.pheading}>{item.projName}</div> </h5>
-                                                                <p className="card-text">Vaccancies: <span className={styles.ptext}>{item.jobopportunities}</span> </p>
-                                                                <p className="card-text">Owner:  <span className={styles.ptext}>{item.owner}</span> </p>
+                                                                <h5 className="card-title"><div className={styles.pheading}>{item.name}</div> </h5>
+                                                                
+                                                                <p className="card-text">Details : <span className={styles.ptext}>{item.description}</span> </p>
                                                                 <p className="card-text">
 
                                                                 </p>
@@ -149,8 +140,15 @@ function Project(props) {
                                                             </div>
                                                         </div>
 
+                                                        <div>
+      <button onClick={handleClick}>More..</button>
+      
+    </div>
 
-                                                        <Accordion>
+
+                            
+
+                                                        {/* <Accordion>
                                                             <Accordion.Item eventKey="0">
                                                                 <Accordion.Header>
                                                                     <div className={"col-md-11"}>
@@ -192,8 +190,8 @@ function Project(props) {
                                                                     </div>
                                                                 </Accordion.Body>
                                                             </Accordion.Item>
-                                                        </Accordion>
-                                                        <Accordion>
+                                                        </Accordion> */}
+                                                        {/* <Accordion>
                                                             <Accordion.Item eventKey="0">
                                                                 <Accordion.Header>
                                                                     <div className={"col-md-11"}>
@@ -232,9 +230,9 @@ function Project(props) {
                                                                     </div>
                                                                 </Accordion.Body>
                                                             </Accordion.Item>
-                                                        </Accordion>
+                                                        </Accordion> */}
 
-
+                                                  
                                                     </div>
                                                 </div>
 
@@ -243,9 +241,9 @@ function Project(props) {
 
 
 
-
+                     
                                         </div>
-
+                                        
 
                                     );
                                 })}
@@ -268,4 +266,4 @@ function Project(props) {
     );
 }
 
-export default Project;
+export default Product;

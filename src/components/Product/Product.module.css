@@ -1,0 +1,104 @@
+.pcrdSetup {
+    border: 0px;
+    background-color: #e2d7dd;
+}
+
+.btnStyle {
+    border: 0px;
+    background-color: transparent;
+    font-size: large;
+}
+
+.counterSet {
+    padding-right: 5px;
+}
+
+.products {
+    padding-top: 10%;
+}
+
+.bcolor {
+    background-color: #cf99bc;
+}
+
+.cwidth {
+    width: 300rem;
+}
+
+.dialog {
+    box-shadow: 0 8px 6px -6px black;
+    position: static;
+    left: 20%;
+    top: 10%;
+}
+
+.image {
+    width: 300px;
+}
+
+.ptext {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.pheading {
+    color: #692038;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.pmheading {
+    color: #692038;
+    font-weight: 800;
+    font-size: 2.0rem;
+    padding-left: 1.5rem;
+}
+
+
+.ptext1 {
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.zoom:hover {
+    transform: scale(1.2);
+    /* (150% zoom)*/
+}
+
+.photo {
+    height:40rem;
+    width: 90rem;
+}
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+   
+     width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0,0,0,0.2);
+    /* border: 1px solid #999;
+    border-radius: 4px;
+    margin: 40px auto;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    
+
+}
+
+.popup-content {
+    position: relative;
+    background-color: white;
+    padding: 32px;
+    width: 100%;
+    max-width: 640px;
+}
+.popup-content .closebutton{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
