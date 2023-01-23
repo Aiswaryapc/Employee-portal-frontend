@@ -4,24 +4,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Project.module.css";
 import Accordion from "react-bootstrap/Accordion";
-
+import NavBar from '../Nav/Navbar';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import { Link, useNavigate } from "react-router-dom";
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
-}
+
 const useStyles = makeStyles(theme => ({
     modal: {
         display: 'flex',
@@ -47,13 +36,27 @@ function Project(props) {
 
     const [showButton, setShowButton] = useState(false);
     let role = "";
+    let token="";
     const navigate = useNavigate();
     useEffect(() => {
         role = localStorage.getItem("role")
-
-        axios.get(`http://localhost:8093/api/test/projects`).then((response) => {
-            setProject(response.data);
-        });
+        token=localStorage.getItem("token")
+    
+        const config = {
+          headers: { Authorization: `Bearer ${token}` }
+      };
+      
+      const bodyParameters = {
+         key: "value"
+      };
+      
+      axios.get( 
+        'http://localhost:8093/api/test/projects',
+        bodyParameters,
+        config
+      ).then((response) => {
+        setProject(response.data);
+      });
 
         if ((role === "ROLE_ADMIN")||(role === "ROLE_MANAGER")) {
             setShowButton(true)
@@ -64,8 +67,8 @@ function Project(props) {
     }, []);
 
 
-    const classes = useStyles();
-    const [modalStyle] = React.useState(getModalStyle);
+    
+ 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -76,7 +79,8 @@ function Project(props) {
     const [modalData, setModalData] = useState(null);
 
     return (
-
+        <>
+<NavBar/>
         <div className={styles.display}>
 
             <div className="container p-0">
@@ -127,10 +131,45 @@ function Project(props) {
                                                             open={open}
                                                             onClose={handleClose}
                                                         >
-                                                            <div style={modalStyle} className={classes.paper}>
-                                                                <h2>Flowchart</h2>
+                                                            <div style={{ outline: 'none' }} className={styles.model}>
+                                                                <div className={styles.display}>
+                                                                    <div className="container p-0">
+                                                                        <div class="container-fluid h-100">
+                                                                            <div class="column d-flex justify-content-center align-items-center h-100">
+                                                                                <div class="col-md-12 col-lg-12 col-xl-12 offset-xl-1">
+                                                                                    <div className={"card shadow " + styles.cardSetup}>
+                                                                                        <div className={"card-header " + styles.headerCrd}>
+                                                                                            <div className={"text-center " + styles.eheading}>Flowchart</div>
+                                                                                        </div>
 
-                                                                <img src={modalData?.flowChart} className={styles.photo}></img>
+
+                                                                                        <div
+                                                                                            className={"card-body " + styles.cardBody}
+                                                                                            data-bs-spy="scroll"
+                                                                                            data-bs-target="#navbar-example"
+                                                                                        >
+                                                                                            <img src={modalData?.flowChart} className={styles.photo}></img>
+
+                                                                                            
+
+
+                                                                                            <button
+                                                                                                id="button"
+                                                                                                onClick={(e) => setOpen(false)}
+                                                                                                className={styles.subtn}
+
+                                                                                            >
+                                                                                                Close
+                                                                                            </button>
+
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
                                                             </div>
                                                         </Modal>
@@ -263,7 +302,7 @@ function Project(props) {
 
 
         </div>
-
+</>
 
     );
 }

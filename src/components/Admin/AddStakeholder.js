@@ -3,6 +3,7 @@ import styles from "./AddProject.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import NavBar from '../Nav/Navbar';
 
 function AddStakeholder(props) {
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ function AddStakeholder(props) {
     }
 
     return (
-        <div><div className={styles.display}>
+        <div><NavBar/><div className={styles.display}>
             <div className="container p-0">
                 <div class="container-fluid h-100">
                     <div class="column d-flex justify-content-right align-items-right h-100">

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./AddNews.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import NavBar from '../Nav/Navbar';
 import { useNavigate } from "react-router-dom";
 function AddNews(props) {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ function AddNews(props) {
       }
     
     return (
-        <div><div className={styles.display}>
+        <div><NavBar/><div className={styles.display}>
       <div className="container p-0">
         <div class="container-fluid h-100">
           <div class="column d-flex justify-content-right align-items-right h-100">

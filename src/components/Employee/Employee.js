@@ -3,17 +3,31 @@ import styles from "./Employee.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Accordion from "react-bootstrap/Accordion";
+import NavBar from '../Nav/Navbar';
 function Employee(props) {
 
   const [emp, setEmp] = useState([]);
-
+let token = "";
   useEffect(() => {
+    token=localStorage.getItem("token")
+    
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+  
+  const bodyParameters = {
+     key: "value"
+  };
+  
+  axios.get( 
+    'http://localhost:8093/api/test/employees',
+    bodyParameters,
+    config
+  ).then((response) => {
+    setEmp(response.data);
+  });
 
-
-    axios.get(`http://localhost:8093/api/test/employees`).then((response) => {
-      setEmp(response.data);
-
-    });
+   
 
 
   }, []);
@@ -22,7 +36,9 @@ function Employee(props) {
 
 
   return (
-    <div><div className={styles.display}>
+    <div>
+      <NavBar/>
+      <div className={styles.display}>
       <div className="container p-0">
         <div class="container-fluid h-100">
           <div class="column d-flex justify-content-right align-items-right h-100">

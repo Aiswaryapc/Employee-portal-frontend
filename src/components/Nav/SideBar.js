@@ -26,7 +26,7 @@ const Sidebar = () => {
             className="text-decoration-none"
             style={{ color: 'inherit' }}
           >
-            Sidebar
+            Dashboard
           </a>
         </CDBSidebarHeader>
 
@@ -47,7 +47,7 @@ const Sidebar = () => {
                 Managers
               </CDBSidebarMenuItem>
             </NavLink> */}
-            <NavLink exact to="/analytics" activeClassName="activeClicked">
+            <NavLink exact to="/product" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="list">
                Products
               </CDBSidebarMenuItem>
@@ -61,6 +61,11 @@ const Sidebar = () => {
               <CDBSidebarMenuItem icon="users">
              
                 Stakeholders
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/analytics" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="book">
+                Company Policies
               </CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/analytics" activeClassName="activeClicked">

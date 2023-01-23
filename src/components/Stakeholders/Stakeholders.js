@@ -4,19 +4,33 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Accordion from "react-bootstrap/Accordion";
 import { Link, useNavigate } from "react-router-dom";
-
+import NavBar from '../Nav/Navbar';
 function Stakeholders(props) {
   const [emp, setEmp] = useState([]);
   const [showButton, setShowButton] = useState(false);
     let role = "";
+    let token ="";
     const navigate = useNavigate();
   useEffect(() => {
     role = localStorage.getItem("role")
-
-    axios.get(`http://localhost:8093/api/test/stakeholders`).then((response) => {
-      setEmp(response.data);
-
-    });
+    token=localStorage.getItem("token")
+    
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+  
+  const bodyParameters = {
+     key: "value"
+  };
+  
+  axios.get( 
+    'http://localhost:8093/api/test/stakeholders',
+    bodyParameters,
+    config
+  ).then((response) => {
+    setEmp(response.data);
+  });
+   
     if (role === "ROLE_ADMIN") {
       setShowButton(true)
     } else {
@@ -29,7 +43,8 @@ function Stakeholders(props) {
 
 
   return (
-    <div><div className={styles.display}>
+    <div>
+      <NavBar/><div className={styles.display}>
       <div className="container p-0">
         <div class="container-fluid h-100">
           <div class="column d-flex justify-content-right align-items-right h-100">

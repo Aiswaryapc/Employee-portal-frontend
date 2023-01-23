@@ -13,14 +13,28 @@ function Newsfeed(props) {
   const [add, setAdd] = useState("");
   const [showButton, setShowButton] = useState(false);
   let role = "";
+  let token ="";
   const navigate = useNavigate();
   useEffect(() => {
-
     role = localStorage.getItem("role")
-    axios.get(`http://localhost:8093/api/test/newsFeed`).then((response) => {
-      setPost(response.data);
-
-    });
+  token=localStorage.getItem("token")
+    
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+  
+  const bodyParameters = {
+     key: "value"
+  };
+  
+  axios.get( 
+    'http://localhost:8093/api/test/newsFeed',
+    bodyParameters,
+    config
+  ).then((response) => {
+    setPost(response.data);
+  });
+   
     if (role === "ROLE_ADMIN") {
       setAdd("Add New Post");
       setShowButton(true)
@@ -37,7 +51,7 @@ function Newsfeed(props) {
   return (
     <>
 
-
+      <NavBar/>
       <div> <div className={styles.display}>
         <div className="container p-0">
 

@@ -48,7 +48,7 @@ function Login() {
                   <div class=" p-md-2 mx-md-2">
                     <div class=" text-left mt-1 mb-1 pb-1">
                       <h1 class="mt-1 mb-5 pb-1">
-                        <p className="welcome">WELCOME!!</p>
+                        <p className="welcome">Axis Saral</p>
                       </h1>
                       <form>
                         <label className="label">
