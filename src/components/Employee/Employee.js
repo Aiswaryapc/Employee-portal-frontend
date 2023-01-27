@@ -91,12 +91,16 @@ let token = "";
 
                               <div className="row p-3" key={index}>
 
+                              <img src={`http://localhost:8093/api/test/employee/profile-image/${item?.empID}`} className={styles.img12} alt="..." />
 
                                 <div className={styles.itemName1}>
                                   Employee Id:  <span className={styles.ptext1}> {item?.empID}</span>
                                 </div>
                                 <div className={styles.itemName1}>
                                   Name:  <span className={styles.ptext1}> {item?.name}</span>
+                                </div>
+                                <div className={styles.itemName1}>
+                                  Designation:  <span className={styles.ptext1}> {item?.designation}</span>
                                 </div>
                                 <div className={styles.itemName1}>
                                   Role:   {item?.roles?.map((item1, index1) => {

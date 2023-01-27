@@ -7,6 +7,7 @@ import styles from "./Profile.module.css";
 function Profile(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [emp, setEmp] = useState();
+    const [state, setState] = useState({ file: "" });
     let empId = "";
     useEffect(() => {
         empId = localStorage.getItem("empId")
@@ -20,6 +21,31 @@ function Profile(props) {
 
 
     }, []);
+
+
+    function handleFile(e) {
+        let file = e.target.files[0]
+        setState({ ...state, file: file })
+
+    }
+
+    function pic(e) {
+        console.log(emp.empID);
+        let file = state.file;
+        console.log(file);
+        let formdata = new FormData();
+        formdata.append('userId', emp.empID);
+        formdata.append('file', file);
+        console.log(formdata);
+        axios({
+            url: 'http://localhost:8093/api/test/employee/profile-image/add',
+            method: "POST",
+            data: formdata
+        }).then((response) => {
+            alert("Profile picture updated");
+            window.location.reload(true);
+        })
+    }
     if (isLoading) {
 
 
@@ -49,8 +75,17 @@ function Profile(props) {
 
 
                                                 <img src={`http://localhost:8093/api/test/employee/profile-image/${emp.empID}`} className={styles.img} alt="..." />
+
                                                 <div className="card-body mb-1">
+                                                    <button className={styles.subtn2} onClick={(e) => {
+                                                        pic(e);
+                                                        handleFile(e)
+                                                    }}>Upload Photo</button>
+                                                    <input type="file" onChange={(e) =>
+                                                        handleFile(e)
+                                                    } />
                                                     <div className={styles.name}>{emp.name}</div>
+                                                    <div className={styles.name}>{emp.designation}</div>
 
                                                     <hr />
 
@@ -62,7 +97,7 @@ function Profile(props) {
                                                     <div className={styles.colon}>:</div>
                                                     <div className={styles.eid}>{emp.gender}</div>
 
-                                
+
 
                                                     <div className={styles.id}>Email ID</div>
                                                     <div className={styles.colon}>:</div>

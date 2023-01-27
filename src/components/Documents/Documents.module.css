@@ -78,59 +78,36 @@ color: #692038;
         border-width: 0.001ch;
         border-color: #692038;
     }
-    .profile{
-        margin-left: 15%;
-        margin-right: 12%;
-        margin-top: 0%; 
-    }
-    .crd{
-        border: 1px;
-    
-    }
-    .img{
-        margin-top: 5%;
-        margin-left:40%;
-        height:20%;
-        width:20%;
-    }
-    .name{
-        text-transform: uppercase;
-        font-size: 22px;
-        font-weight: 600;
-        text-align: center;
-        margin-bottom: 2%;
-        color: #692038;
-    }
-    .id{
-        margin-left: 0%;
-        position: absolute;
-        margin-bottom: 2%;
-    }
-    .colon{
-        margin-left: 35%;
-        position: absolute;
-        margin-bottom: 2%;
-    }
-    .eid{
-        margin-left: 83%;
-        margin-bottom: 2%;
-        color: #692038;
-    }
+
     .subtn2{
-        background-color: #692038;
-        color: white;
+        background-color: #F0E5EB;
+        color: #692038;
         font-size: 15px;
         /* flex-wrap: wrap; */
         /* padding: 1% 0%; */
-        border-radius: 5px;
+        border-radius: 2px;
         margin: 0% ;
-        border-color: #692038;
+        border-color: #F0E5EB;
         /* margin-left: 35%;
         margin-right: 20%; */
-        width: 18%;
+        width: 55%;
         margin-bottom: 2%;
         margin-top: 1%;
-        margin-left: 41%;
-        margin-right: 2%;
+       
+        
         cursor: pointer;
+        }
+
+        .nbutn{
+            background-color: white;
+        color: #861f41;
+        font-size: 20px;
+        padding: 10px 80px;
+        border-radius: 8px;
+        border: 0.15rem solid #861f41;
+        cursor: pointer;
+        width: 40%;
+        margin-top: 3%;
+        margin-left: 45%;
+        margin-right: 30%;
         }

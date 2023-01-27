@@ -17,6 +17,7 @@ import ProtectedRoutes from "./InProtectedRoutes";
 
 import Product from "./components/Product/Product";
 import Profile from "./components/Profile/Profile";
+import Documents from "./components/Documents/Documents";
 function App() {
   return (
     
@@ -47,6 +48,7 @@ function App() {
         <Route path="/addStakeholder" element={<AddStakeholder/>} />
         <Route path="/product" element={<Product/>} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/docs" element={<Documents/>} />
 
        
         
