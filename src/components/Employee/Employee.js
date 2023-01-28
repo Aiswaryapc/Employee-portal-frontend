@@ -11,10 +11,13 @@ import { useNavigate } from "react-router-dom";
 function Employee(props) {
   const navigate = useNavigate();
   const [emp, setEmp] = useState([]);
+  
+  const [showButton, setShowButton] = useState(false);
+  let role = "";
 let token = "";
   useEffect(() => {
     token=localStorage.getItem("token")
-    
+    role = localStorage.getItem("role")
     const config = {
       headers: { Authorization: `Bearer ${token}` }
   };
@@ -31,7 +34,12 @@ let token = "";
     setEmp(response.data);
   });
 
-   
+  if (role === "ROLE_ADMIN") {
+    setShowButton(true)
+} else {
+
+    setShowButton(false)
+}
 
 
   }, []);
@@ -52,7 +60,7 @@ let token = "";
                   <div className={"text-center " + styles.eheading}>Employees</div>
           
    
-   
+                  {showButton &&
                   <Dropdown>
         <Dropdown.Toggle className={styles.btnbg} >
           Edit Options
@@ -68,7 +76,7 @@ let token = "";
             Change Role
           </Dropdown.Item>
         </Dropdown.Menu>
-      </Dropdown>
+      </Dropdown>}
                 </div>
 
                 <div
