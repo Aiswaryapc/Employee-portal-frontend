@@ -18,6 +18,11 @@ import ProtectedRoutes from "./InProtectedRoutes";
 import Product from "./components/Product/Product";
 import Profile from "./components/Profile/Profile";
 import Documents from "./components/Documents/Documents";
+import Policies from "./components/Policies/Policies";
+import ViewPDF from "./components/Policies/ViewPDF";
+import CardRow from "./components/Policies/Policies";
+
+
 function App() {
   return (
     
@@ -49,6 +54,8 @@ function App() {
         <Route path="/product" element={<Product/>} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/docs" element={<Documents/>} />
+        <Route path="/policies" element={<CardRow/>} />
+       
 
        
         
