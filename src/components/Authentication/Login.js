@@ -85,10 +85,6 @@ function Login() {
                         </button>
                       </form>
 
-                      <h5 className="linktext">
-                        Don't have an account? 
-                        <Link to="/signup" className="link">SignUp</Link>
-                      </h5>
                     </div>
                   </div>
                 </div>

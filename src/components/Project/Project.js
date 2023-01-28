@@ -125,14 +125,15 @@ function Project(props) {
                                                                 
                                                                 setModalData(item);}}
                                                         ></div>
-                                                        <Modal
+                                                        <Modal size='lg'
+                                                fullscreen={'below lg'}
                                                             aria-labelledby="simple-modal-title"
                                                             aria-describedby="simple-modal-description"
                                                             open={open}
                                                             onClose={handleClose}
                                                         >
                                                             <div style={{ outline: 'none' }} className={styles.model}>
-                                                                <div className={styles.display}>
+                                                                <div className={styles.display1}>
                                                                     <div className="container p-0">
                                                                         <div class="container-fluid h-100">
                                                                             <div class="column d-flex justify-content-center align-items-center h-100">
@@ -153,7 +154,10 @@ function Project(props) {
                                                                                             
 
 
-                                                                                            <button
+                                                                                          
+
+                                                                                        </div>
+                                                                                        <button
                                                                                                 id="button"
                                                                                                 onClick={(e) => setOpen(false)}
                                                                                                 className={styles.subtn}
@@ -161,9 +165,6 @@ function Project(props) {
                                                                                             >
                                                                                                 Close
                                                                                             </button>
-
-                                                                                        </div>
-
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -204,24 +205,24 @@ function Project(props) {
                                                                 </Accordion.Header>
                                                                 <Accordion.Body>
                                                                     <div className="col">
-                                                                        <div className="row p-3" key={index}>
+                                                                        <div className="row p-0" key={index}>
                                                                             <div className="col-md-8 d-flex">
 
                                                                             </div>
                                                                         </div>
                                                                         {item?.employee?.map((item1, index1) => {
                                                                             return (
-                                                                                <div className="row p-3" key={index1}>
+                                                                                <div className="row p-0" key={index1}>
 
                                                                                     <div className={styles.itemDes}>
                                                                                         Name: <span className={styles.ptext1}>  {item1?.name}</span>
-                                                                                    </div>
+                                                                                    
                                                                                     {item1?.roles?.map((item2, index2) => {
                                                                                         return (
                                                                                             <div className={styles.itemName}>
                                                                                                 Role:  <span className={styles.ptext1}> {item2?.name}</span>
                                                                                             </div>)
-                                                                                    })}
+                                                                                    })}</div>
 
 
                                                                                 </div>
@@ -247,21 +248,21 @@ function Project(props) {
                                                                 </Accordion.Header>
                                                                 <Accordion.Body>
                                                                     <div className="col">
-                                                                        <div className="row p-3" key={index}>
+                                                                        <div className="row p-0" key={index}>
                                                                             <div className="col-md-8 d-flex">
 
                                                                             </div>
                                                                         </div>
                                                                         {item?.stakeholder?.map((item1, index1) => {
                                                                             return (
-                                                                                <div className="row p-3" key={index1}>
+                                                                                <div className="row p-0" key={index1}>
 
                                                                                     <div className={styles.itemDes}>
                                                                                         Name:  <span className={styles.ptext1}> {item1?.name}</span>
-                                                                                    </div>
+                                                                                    
                                                                                     <div className={styles.itemName}>
                                                                                         Position: <span className={styles.ptext1}>  {item1?.position}</span>
-                                                                                    </div>
+                                                                                    </div></div>
 
 
                                                                                 </div>

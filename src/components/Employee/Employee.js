@@ -4,8 +4,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Accordion from "react-bootstrap/Accordion";
 import NavBar from '../Nav/Navbar';
-function Employee(props) {
+import 'bootstrap/dist/css/bootstrap.css';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { useNavigate } from "react-router-dom";
 
+function Employee(props) {
+  const navigate = useNavigate();
   const [emp, setEmp] = useState([]);
 let token = "";
   useEffect(() => {
@@ -46,6 +50,25 @@ let token = "";
               <div className={"card shadow " + styles.cardSetup}>
                 <div className={"card-header " + styles.headerCrd}>
                   <div className={"text-center " + styles.eheading}>Employees</div>
+          
+   
+   
+                  <Dropdown>
+        <Dropdown.Toggle className={styles.btnbg} >
+          Edit Options
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Item href="#" onClick={(e) =>{navigate("/addEmployee")}} >
+            Add Employee
+          </Dropdown.Item>
+          <Dropdown.Item href="#">
+            Assign Project
+          </Dropdown.Item>
+          <Dropdown.Item href="#">
+            Change Role
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
                 </div>
 
                 <div

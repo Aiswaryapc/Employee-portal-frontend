@@ -18,6 +18,12 @@
     padding-top: 0.1rem;
     
 }
+.btnbg{
+    background-color: #692038 !important;
+    border-color: #692038 !important;
+    margin-left: 90% !important;
+ 
+}
 .cardSetup{
     /* height: 300px !important; */
     margin-top: 6%;
@@ -30,7 +36,8 @@
 .display{
     display: flex;
     position: relative;
-    margin-left: 11rem;
+    margin-left: 12%;
+    margin-top: 2%;
 }
 .itemName{
     padding-left: 2rem;

@@ -2,7 +2,6 @@
     position: relative;
     background-color: #F0E5EB;
     
-    
 }
 .eheading{
     color: #692038;
@@ -14,7 +13,7 @@
 }
 .cardSetup{
     /* height: 300px !important; */
-    margin-top: 10%;
+    margin-top: 6%;
     border: 0px !important;
 }
 .headerCrd{
@@ -45,12 +44,12 @@ color: #692038;
     color: white;
     font-size: 20px;
     /* flex-wrap: wrap; */
-    padding: 10px 104px;
+    padding: 5px 20px;
     border-radius: 5px;
     margin: 2.4rem ;
-    margin-left: 32%;
+    margin-left: 45%;
     margin-right: 20%;
-    width: 25rem;
+    width: 15%;
     cursor: pointer;
     }
 
@@ -68,7 +67,7 @@ color: #692038;
     .label{
         color: #692038;
         padding-bottom: 0.5rem;
-        font-size: 1.2rem;
+        font-size: 1.01rem;
         font-weight: 600;
         padding-left: 20%;
     }
@@ -79,36 +78,3 @@ color: #692038;
         border-width: 0.001ch;
         border-color: #692038;
     }
-
-    .subtn2{
-        background-color: #F0E5EB;
-        color: #692038;
-        font-size: 15px;
-        /* flex-wrap: wrap; */
-        /* padding: 1% 0%; */
-        border-radius: 2px;
-        margin: 0% ;
-        border-color: #F0E5EB;
-        /* margin-left: 35%;
-        margin-right: 20%; */
-        width: 55%;
-        margin-bottom: 2%;
-        margin-top: 1%;
-       
-        
-        cursor: pointer;
-        }
-
-        .nbutn{
-            background-color: #F0E5EB;
-        color: #861f41;
-        font-size: 20px;
-        padding: 10px 40px;
-        border-radius: 8px;
-        border: 0.15rem solid #861f41;
-        cursor: pointer;
-        width: 25%;
-        margin-top: 3%;
-        margin-left: 10%;
-        margin-right: 30%;
-        }
