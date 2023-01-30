@@ -17,7 +17,7 @@ const Sidebar = () => {
   return (
     
     <div
-      style={{ display: 'flex', height: '75vh', overflow: 'scroll initial' ,marginLeft:'5rem',marginTop:'8rem',marginBottom:'5rem',position:'fixed'}}
+      style={{ display: 'flex', height: '75vh', overflow: 'scroll initial' ,marginLeft:'5%',marginTop:'10%',marginBottom:'5rem',position:'fixed'}}
     >
       <CDBSidebar textColor="#692038" backgroundColor="#F0E5EB">
       <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>

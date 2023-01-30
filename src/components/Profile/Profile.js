@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Profile.module.css";
 
+import Sidebar from '../Nav/SideBar';
+
 function Profile(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [emp, setEmp] = useState();
@@ -51,6 +53,7 @@ function Profile(props) {
 
         return (
             <div>
+                {/* <Sidebar/> */}
                 <NavBar />
                 <div className={styles.display}>
                     <div className="container p-0">

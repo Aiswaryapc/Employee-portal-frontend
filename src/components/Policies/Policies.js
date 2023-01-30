@@ -1,13 +1,13 @@
 import React from "react";
-import "./Policies.css"
+import styles from "./Policies.module.css"
 import ViewPdf from "./ViewPDF";
 
-
+import NavBar from '../Nav/Navbar';
 const Card = (props) => {
 return (
-<div className="card1" onClick={props.onClick}>
-<h2 className="policytitle">{props.title}</h2>
-<img className="policyimage"  src={props.image} alt={props.title} />
+<div className={styles.card1} onClick={props.onClick}>
+<h2 className={styles.policytitle}>{props.title}</h2>
+<img className={styles.policyimage}  src={props.image} alt={props.title} />
 </div>
 );
 }
@@ -39,7 +39,11 @@ class CardRow extends React.Component {
 
   render() {
     return (
-      <div className="card-row">
+      <div>
+        <NavBar/>
+        <div className={styles.display}>
+      <div className="row ">
+        
         <Card
           title="Code Of Conduct"
           image="https://www.i-sight.com/wp-content/uploads/2017/08/code-of-conduct-examples.jpg"
@@ -70,7 +74,7 @@ class CardRow extends React.Component {
           onClick={this.handleGiftCardPolicy}
         />
         {this.state.showPdf4 && <ViewPdf name="GiftCardPolicy" />}
-      </div>
+      </div></div></div>
     );
   }
 }

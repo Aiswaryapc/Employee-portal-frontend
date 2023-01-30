@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import axios from 'axios';
-
+import styles from "./Policies.module.css"
 function ViewPdf(props) {
     const [isLoading, setIsLoading] = useState(true);
     const [viewPdf, setViewPdf] = useState(true);
@@ -21,7 +21,7 @@ function ViewPdf(props) {
     if (isLoading) {
         return (
             <div>
-                <Button variant='primary' onClick={openPdf}>ViewPDF</Button>
+                <Button variant='primary'  className={styles.btnbg} onClick={openPdf}>ViewPDF</Button>
             </div>
         )
     }
@@ -49,7 +49,7 @@ function ViewPdf(props) {
                     </Modal.Footer>
                 </Modal>
             </div>
-                <Button variant='primary' onClick={openPdf}>ViewPDF</Button>
+                <Button variant='primary' className={styles.btnbg}  onClick={openPdf}>ViewPDF</Button>
         </div>
     );
 }

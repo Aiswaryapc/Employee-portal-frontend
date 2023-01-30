@@ -1,20 +1,27 @@
-
-.card-row {
+.display{
+    display: flex;
+    position: relative;
+    margin-left: 30%;
+}
+.card {
 
     margin-left: 20%;
     display: flex;
     /* justify-content: space-between; */
     align-items: center;
     padding: 30px;
+    position: relative;
+    margin-top: 5%;
     }
     
     .card1 {
-    width: 400px;
-    height: 400px;
-    background-color: #f1f1f1;
+    width: 40%;
+    height: 35%;
+    background-color: #F0E5EB;
     border-radius: 10px;
     padding: 40px;
-    margin: 20px;
+    margin-top: 10%;
+    margin-right: 2%;
     text-align: center;
     transition: all 0.2s ease-in-out;
     }
@@ -26,6 +33,9 @@
     
     .policytitle {
     margin-top: 0;
+    font-size: 1rem;
+    color: #692038;
+    font-weight: 600;
     }
     
     .policyimage {
@@ -35,4 +45,12 @@
     border-radius: 10px;
     margin-bottom: 5px;
     
+    
+    }
+    .btnbg{
+        background-color: #692038 !important;
+        border-color: #692038 !important;
+        margin-left: 0% !important;
+        margin-top: 5% !important;
+     
     }

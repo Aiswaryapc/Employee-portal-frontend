@@ -23,7 +23,7 @@
 .display{
     display: flex;
     position: relative;
-    margin-left: 11rem;
+    margin-left: 20%;
 }
 .itemName{
     padding-left: 2rem;
