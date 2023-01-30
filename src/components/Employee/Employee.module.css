@@ -22,7 +22,7 @@
 
 }
 
-
+.dropdown-menu { position:relative !important }
     
 
 .btnbg{
@@ -44,8 +44,40 @@
     display: flex;
     position: relative;
     margin-left: 12%;
-    margin-top: 2%;
+    margin-top: 0%;
 }
+.displaymodel{
+    display: flex;
+    position: relative;
+    width: 40%;
+    margin-left: 32%;
+    margin-top: 5%;
+
+}
+.subtn{
+    background-color: #692038;
+    color: white;
+    font-size: 16px;
+    border-color: #692038;
+    padding: 1% 2%;
+    border-radius: 5px;
+    margin: 3% ;
+    
+    width: 15%;
+    cursor: pointer;
+    }
+    .subtn1{
+        background-color: #692038;
+        color: white;
+        font-size: 16px;
+        border-color: #692038;
+        padding: 1% 2%;
+        border-radius: 5px;
+        margin: 3% ;
+        
+        width: 25%;
+        cursor: pointer;
+        }
 .itemName{
     padding-left: 2rem;
     padding-bottom: 2rem;
