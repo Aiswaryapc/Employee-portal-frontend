@@ -63,7 +63,7 @@ const Sidebar = () => {
                 Stakeholders
               </CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/analytics" activeClassName="activeClicked">
+            <NavLink exact to="/policies" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="book">
                 Company Policies
               </CDBSidebarMenuItem>

@@ -44,7 +44,7 @@ let token = "";
 
   }, []);
 
-
+  const [searchEmployee, setSearchEmployee] = useState("");
 
 
   return (
@@ -57,9 +57,19 @@ let token = "";
             <div class="col-md-12 col-lg-12 col-xl-12 offset-xl-1">
               <div className={"card shadow " + styles.cardSetup}>
                 <div className={"card-header " + styles.headerCrd}>
-                  <div className={"text-center " + styles.eheading}>Employees</div>
-          
-   
+                  <div className={"text-center " + styles.eheading}>
+                    <p className='headingEmployee'> Employees </p> 
+                  <input
+                  className="search1"
+                  type="text"
+                  placeholder="Search..."
+                  onChange={(event)=>{
+                    setSearchEmployee(event.target.value);
+                  }}
+                  />
+                  
+                  </div>
+                 
                   {showButton &&
                   <Dropdown>
         <Dropdown.Toggle className={styles.btnbg} >
@@ -84,8 +94,15 @@ let token = "";
                   data-bs-spy="scroll"
                   data-bs-target="#navbar-example"
                 >
-                  {emp.map((item, index) => {
+                  {emp.filter((item)=>{
+                    if (searchEmployee==""){
+                      return item;
+                    }else if((item.name.toLowerCase().includes(searchEmployee.toLowerCase() ) ) ){
+                      return item;
+
+                  }}).map((item, index) => {
                     return (
+                     
                       <Accordion >
                         <Accordion.Item eventKey="0" color='#e2d7dd'>
 
