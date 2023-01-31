@@ -5,12 +5,23 @@ import axios from "axios";
 import Accordion from "react-bootstrap/Accordion";
 import { Link, useNavigate } from "react-router-dom";
 import NavBar from '../Nav/Navbar';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Modal from '@material-ui/core/Modal';
+
 function Stakeholders(props) {
+  const navigate = useNavigate();
+  const [stk, setStk] = useState([]);
+  const [sHid, setSHid] = useState([]);
+  const [pName, setPName] = useState([]);
+  const [project1, setProject1] = useState({
+    project: ""
+  });
   const [emp, setEmp] = useState([]);
   const [showButton, setShowButton] = useState(false);
     let role = "";
     let token ="";
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+    const [open, setOpen] = React.useState(false);
   useEffect(() => {
     role = localStorage.getItem("role")
     token=localStorage.getItem("token")
@@ -30,6 +41,14 @@ function Stakeholders(props) {
   ).then((response) => {
     setEmp(response.data);
   });
+  axios.get(
+    'http://localhost:8093/api/test/projects',
+   
+    config
+  ).then((response) => {
+    setPName(response.data);
+  });
+
    
     if (role === "ROLE_ADMIN") {
       setShowButton(true)
@@ -38,8 +57,25 @@ function Stakeholders(props) {
     }
 
   }, []);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
+  function postProject(e) {
+    e.preventDefault();
+    console.log(project1)
 
+    axios
+      .post(`http://localhost:8093/api/test/stakeholder/update/${sHid}`, project1)
+      .then((response) => {
+        console.log(response.data);
+        alert("Stakeholder Added to project successfully!!!");
+
+      })
+      .catch((error) => {
+        alert("Something went wrong.");
+      });
+  }
 
 
   return (
@@ -54,12 +90,125 @@ function Stakeholders(props) {
                   <div className={"text-center " + styles.eheading}>Stakeholders</div>
                   <div style={{ display: "flex" }}>
                     
-                    {showButton &&   <button style={{ marginLeft: "auto" }} onClick={(e) => {
+                    {/* {showButton &&   <button style={{ marginLeft: "auto" }} onClick={(e) => {
                                navigate("/addStakeholder");
-                            }} className={styles.nbutn}>Add New Stakeholder</button>}
+                            }} className={styles.nbutn}>Add New Stakeholder</button>} */}
+                   {showButton &&
+                      <Dropdown>
+                        <Dropdown.Toggle className={styles.btnbg} >
+                          Edit Options
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                          <Dropdown.Item href="#" onClick={(e) => { navigate("/addStakeholder") }} >
+                            Add Stakeholder
+                          </Dropdown.Item>
+                          <Dropdown.Item href="#" onClick={() => {
+                            setOpen(true);
+                            // setModalData(item);
+                          }}>
+                            Assign Project
+                          </Dropdown.Item>
+                          
+                        </Dropdown.Menu>
+                      </Dropdown>}
                     
                  
                     </div>
+                    <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    open={open}
+                    onClose={handleClose}
+                  >
+                    <div style={{ outline: 'none' }} className={styles.model}>
+                      <div className={styles.displaymodel}>
+                        <div className="container p-0">
+                          <div class="container-fluid h-100">
+                            <div class="column d-flex justify-content-center align-items-center h-100">
+                              <div class="col-md-12 col-lg-12 col-xl-12 offset-xl-1">
+                                <div className={"card shadow " + styles.cardSetup}>
+                                  <div className={"card-header " + styles.headerCrd}>
+                                    <div className={"text-center " + styles.eheading}>Assign Project</div>
+                                  </div>
+
+
+                                  <div
+                                    className={"card-body " + styles.cardBody}
+                                    data-bs-spy="scroll"
+                                    data-bs-target="#navbar-example"
+                                  >
+                                    <label className={styles.label}>
+                                      <div className="text-left mt-1 mb-1 pb-1 ">
+
+                                        Project Name
+                                      </div>
+                                      <div className="form-outline mb-4  ">
+
+                                        <select className="sinput"
+                                          value={project1.project}
+                                          onChange={(e) =>
+                                            setProject1({ ...project1, project: e.target.value })
+                                          }
+                                        >
+                                          {pName.map((item, index) => (
+                                            <option value={item.projName}>{item.projName}</option>))}
+
+
+                                        </select>
+                                      </div>
+                                    </label>
+
+                                    <div>
+                                      <label className={styles.label}>
+                                        <div className="text-left mt-1 mb-1 pb-1">
+
+                                          Stakeholder ID
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                          <input
+                                            type="text"
+                                            value={sHid}
+                                            onChange={(e) =>
+                                              setSHid(e.target.value)
+                                            }
+                                            className="sinput"
+                                          />
+                                        </div>
+                                      </label></div>
+
+
+                                      <button
+                                      id="button"
+                                      onClick={(e) => postProject(e)}
+                                      className={styles.subtn1}
+
+                                    >
+                                     Add Stakeholder
+                                    </button>
+
+
+                                    <button
+                                      id="button"
+                                      onClick={(e) => setOpen(false)}
+                                      className={styles.subtn}
+
+                                    >
+                                      Close
+                                    </button>
+
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </Modal>
+
+
                 </div>
 
                 <div
