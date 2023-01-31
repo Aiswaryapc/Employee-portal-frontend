@@ -65,8 +65,8 @@
 .btnbg{
     background-color: #692038 !important;
     border-color: #692038 !important;
-    margin-left: 95% !important;
-    margin-right: 10%;
+    /* margin-left: 90% !important; */
+  float: right !important;
  
 }
 .displaymodel{

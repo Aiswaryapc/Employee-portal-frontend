@@ -21,7 +21,7 @@ function ViewPdf(props) {
     if (isLoading) {
         return (
             <div>
-                <Button variant='primary'  className={styles.btnbg} onClick={openPdf}>ViewPDF</Button>
+                {/* <Button variant='primary'  className={styles.btnbg} onClick={openPdf}>ViewPDF</Button> */}
             </div>
         )
     }
@@ -49,7 +49,7 @@ function ViewPdf(props) {
                     </Modal.Footer>
                 </Modal>
             </div>
-                <Button variant='primary' className={styles.btnbg}  onClick={openPdf}>ViewPDF</Button>
+                {/* <Button variant='primary' className={styles.btnbg}  onClick={openPdf}>ViewPDF</Button> */}
         </div>
     );
 }

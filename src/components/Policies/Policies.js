@@ -4,6 +4,8 @@ import ViewPdf from "./ViewPDF";
 
 import NavBar from '../Nav/Navbar';
 const Card = (props) => {
+
+  
 return (
 <div className={styles.card1} onClick={props.onClick}>
 <h2 className={styles.policytitle}>{props.title}</h2>

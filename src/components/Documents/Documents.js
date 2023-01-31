@@ -94,9 +94,10 @@ function Documents(props) {
                           }}>
 
                                                Upload SalarySlip</a>
-                                            <a style={{textDecoration: 'none'}} className={styles.anbutn}  onClick={() => {setTitle("Upload Appointment Letter");
+                                            <a style={{textDecoration: 'none'}} className={styles.anbutn}  onClick={() => {
+                                                setTitle("Upload Appointment Letter");
                                              setPTitle("uploadAppointmentLetter");
-                            setOpen(true);
+                                                setOpen(true);
                         
                           }}>
 

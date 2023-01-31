@@ -13,7 +13,10 @@
     font-size: large;
 }
 
-
+.del{
+    float: right;
+    margin-right: 3%;
+}
 .bcolor{
     background-color: #F0E5EB;
     margin-bottom: 0.2rem;
@@ -62,3 +65,15 @@ border: 0.15rem solid #861f41;
 margin: 0rem 0px;
 cursor: pointer;
 }
+.subtn{
+    background-color: #692038;
+    color: white;
+    font-size: 16px;
+    border-color: #692038;
+   
+    border-radius: 15px;
+   
+    
+    width: 100%;
+    cursor: pointer;
+    }

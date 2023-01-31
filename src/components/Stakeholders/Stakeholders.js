@@ -87,15 +87,10 @@ function Stakeholders(props) {
             <div class="col-md-12 col-lg-12 col-xl-12 offset-xl-1">
               <div className={"card shadow " + styles.cardSetup}>
                 <div className={"card-header " + styles.headerCrd}>
-                  <div className={"text-center " + styles.eheading}>Stakeholders</div>
-                  <div style={{ display: "flex" }}>
-                    
-                    {/* {showButton &&   <button style={{ marginLeft: "auto" }} onClick={(e) => {
-                               navigate("/addStakeholder");
-                            }} className={styles.nbutn}>Add New Stakeholder</button>} */}
-                   {showButton &&
-                      <Dropdown>
-                        <Dropdown.Toggle className={styles.btnbg} >
+                  <div className={"text-center " + styles.eheading}>Stakeholders
+                  {showButton &&
+                      <Dropdown >
+                        <Dropdown.Toggle className={styles.btnbg}  >
                           Edit Options
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
@@ -110,10 +105,8 @@ function Stakeholders(props) {
                           </Dropdown.Item>
                           
                         </Dropdown.Menu>
-                      </Dropdown>}
-                    
+                      </Dropdown>}</div>
                  
-                    </div>
                     <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
