@@ -109,7 +109,7 @@ function AddNews(props) {
                         </div>
                       </label>
                       <button
-                          className={styles.subtn}
+                          className={styles.subtn1}
                           onClick={(e) => {
                             postNews(e) 
                           }}

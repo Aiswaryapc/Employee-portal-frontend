@@ -8,17 +8,37 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useNavigate } from "react-router-dom";
 import Modal from '@material-ui/core/Modal';
-
+import ReactLoading from "react-loading";
 
 function Employee(props) {
   const navigate = useNavigate();
   const [emp, setEmp] = useState([]);
   const [pEid, setPEid] = useState([]);
   const [pName, setPName] = useState([]);
+  const [empMail, setEmpMail] = useState([]);
   const [project1, setProject1] = useState({
     project: ""
   });
-  const [modalData, setModalData] = useState(null);
+  const [announcement, setAnnouncement] = useState({
+    msgBody: "",
+    subject: "",
+  });
+  const [mail, setMail] = useState({
+    recipient: "",
+    msgBody: "You are added to a new Project. Please check",
+    subject: "New Project",
+
+  });
+  const Loader = () => <div>Loading...</div>;
+ const hideLoader = () => {
+    setState({ loading: false });
+  }
+
+  const showLoader = () => {
+   setState({ loading: true });
+  }
+  const [state, setState] = React.useState(false);
+  const [aOpen, setAOpen] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [showButton, setShowButton] = useState(false);
   let role = "";
@@ -30,22 +50,23 @@ function Employee(props) {
       headers: { Authorization: `Bearer ${token}` }
     };
 
- 
+
 
     axios.get(
       'http://localhost:8093/api/test/employees',
-    
+
       config
     ).then((response) => {
       setEmp(response.data);
     });
     axios.get(
       'http://localhost:8093/api/test/projects',
-     
+
       config
     ).then((response) => {
       setPName(response.data);
     });
+
 
     if (role === "ROLE_ADMIN") {
       setShowButton(true)
@@ -56,7 +77,54 @@ function Employee(props) {
 
 
   }, []);
+  function getEmail(e) {
+    axios.get(
+      `http://localhost:8093/api/test/emp/${pEid}`,
+    ).then((response) => {
+      setEmpMail(response.data.email);
+    });
+  }
+  function sendMail(e) {
+    getEmail(e)
+    e.preventDefault();
+    
+    setMail({
+      recipient: empMail,
+      msgBody: "You are added to a new Project. Please check",
+      subject: "New Project",
+    })
+    {showLoader()};
+    console.log(mail)
+    axios
+      .post(`http://localhost:8093/api/test/sendMail`, mail)
+      .then((response) => {
+        console.log(response.data);
+        {hideLoader()}
+        alert("Email sent successfully!!!");
 
+      })
+      .catch((error) => {
+        {hideLoader()}
+        alert("Something went wrong.");
+      });
+  }
+
+  function postAnnouncement(e) {
+    e.preventDefault();
+    console.log(announcement)
+    {showLoader()};
+    axios
+      .post(`http://localhost:8093/api/test/sendMailToAll`, announcement)
+      .then((response) => {
+        {hideLoader()}
+        console.log(response.data);
+        alert("Announcement sent to all employees successfully!!!");
+      })
+      .catch((error) => {
+        {hideLoader()}
+        alert("Something went wrong.");
+      });
+  }
   function postProject(e) {
     e.preventDefault();
     console.log(project1)
@@ -66,7 +134,7 @@ function Employee(props) {
       .then((response) => {
         console.log(response.data);
         alert("Employee Added to project successfully!!!");
-
+        sendMail(e)
       })
       .catch((error) => {
         alert("Something went wrong.");
@@ -75,6 +143,9 @@ function Employee(props) {
   console.log(pName)
   const handleClose = () => {
     setOpen(false);
+  };
+  const ahandleClose = () => {
+    setAOpen(false);
   };
 
   const [searchEmployee, setSearchEmployee] = useState("");
@@ -106,7 +177,7 @@ function Employee(props) {
                     {showButton &&
                       <Dropdown>
                         <Dropdown.Toggle className={styles.btnbg} >
-                          Edit Options
+                          More Options
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                           <Dropdown.Item href="#" onClick={(e) => { navigate("/addEmployee") }} >
@@ -114,12 +185,13 @@ function Employee(props) {
                           </Dropdown.Item>
                           <Dropdown.Item href="#" onClick={() => {
                             setOpen(true);
-                            // setModalData(item);
                           }}>
                             Assign Project
                           </Dropdown.Item>
-                          <Dropdown.Item href="#">
-                            Change Role
+                          <Dropdown.Item href="#" onClick={() => {
+                            setAOpen(true);
+                          }}>
+                            Send Announcement
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>}
@@ -138,7 +210,15 @@ function Employee(props) {
                               <div class="col-md-12 col-lg-12 col-xl-12 offset-xl-1">
                                 <div className={"card shadow " + styles.cardSetup}>
                                   <div className={"card-header " + styles.headerCrd}>
-                                    <div className={"text-center " + styles.eheading}>Assign Project</div>
+                                    <div className={"text-center " + styles.eheading}>Assign Project
+                                      <button
+                                        id="button"
+                                        onClick={(e) => setOpen(false)}
+                                        className={styles.subtn}
+
+                                      >
+                                        X
+                                      </button></div>
                                   </div>
 
 
@@ -168,43 +248,42 @@ function Employee(props) {
                                       </div>
                                     </label>
 
-                                    <div>
-                                      <label className={styles.label}>
-                                        <div className="text-left mt-1 mb-1 pb-1">
+                                    <label className={styles.label}>
+                                      <div className="text-left mt-1 mb-1 pb-1 ">
 
-                                          Employee Id
-                                        </div>
-                                        <div className="form-outline mb-4">
-                                          <input
-                                            type="text"
-                                            value={pEid}
-                                            onChange={(e) =>
-                                              setPEid(e.target.value)
-                                            }
-                                            className="sinput"
-                                          />
-                                        </div>
-                                      </label></div>
+                                        Employee
+                                      </div>
+                                      <div className="form-outline mb-4  ">
+
+                                        <select className="sinput"
+                                          value={pEid}
+                                          onChange={(e) =>
+                                            setPEid(e.target.value)
+                                          }
+                                        >
+                                          {emp.map((item, index) => (
+                                            <option value={item.empID}>Id:{' '}{item.empID}{' '}{' '}Name:{' '}{item.name}</option>))}
 
 
-                                      <button
-                                      id="button"
-                                      onClick={(e) => postProject(e)}
-                                      className={styles.subtn1}
+                                        </select>
+                                      </div>
+                                    </label>
 
-                                    >
-                                     Add Employee
-                                    </button>
+
 
 
                                     <button
                                       id="button"
-                                      onClick={(e) => setOpen(false)}
-                                      className={styles.subtn}
+                                      onClick={(e) => {postProject(e);
+                                      }}
+                                      className={styles.subtn1}
 
                                     >
-                                      Close
+                                      {(state.loading) ? <ReactLoading type="bars" className={styles.loader1} /> : "Add Employee"}
                                     </button>
+
+
+
 
                                   </div>
 
@@ -217,6 +296,96 @@ function Employee(props) {
 
                     </div>
                   </Modal>
+                  <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    open={aOpen}
+                    onClose={ahandleClose}
+                  >
+                    <div style={{ outline: 'none' }} className={styles.model}>
+                      <div className={styles.displaymodel}>
+                        <div className="container p-0">
+                          <div class="container-fluid h-100">
+                            <div class="column d-flex justify-content-center align-items-center h-100">
+                              <div class="col-md-12 col-lg-12 col-xl-12 offset-xl-1">
+                                <div className={"card shadow " + styles.cardSetup}>
+                                  <div className={"card-header " + styles.headerCrd}>
+                                    <div className={"text-center " + styles.eheading}>Announcement
+                                      <button
+                                        id="button"
+                                        onClick={(e) => setAOpen(false)}
+                                        className={styles.subtn}
+
+                                      >
+                                        X
+                                      </button></div>
+                                  </div>
+
+
+                                  <div
+                                    className={"card-body " + styles.cardBody}
+                                    data-bs-spy="scroll"
+                                    data-bs-target="#navbar-example"
+                                  >
+                                    <div className='row'>
+                                      <label className={styles.label}>
+                                        <div className="text-left mt-1 mb-1 pb-1">
+
+                                          Subject
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                          <input className={styles.textArea}
+                                            type="text"
+                                            value={announcement.subject}
+                                            onChange={(e) =>
+                                              setAnnouncement({ ...announcement, subject: e.target.value })
+                                            }
+
+                                          />
+                                        </div>
+                                      </label>
+                                      <label className={styles.label}>
+                                        <div className="text-left mt-1 mb-1 pb-1">
+
+                                          Message
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                          <textarea className={styles.textArea} id="textAreaExample" rows="3" value={announcement.msgBody}
+                                            onChange={(e) =>
+                                              setAnnouncement({ ...announcement, msgBody: e.target.value })
+                                            }></textarea>
+                                        </div>
+                                      </label>
+
+
+
+                                    </div>
+
+
+                                    <button
+                                      id="button"
+                                      onClick={(e) => postAnnouncement(e)}
+                                      className={styles.subtn1}
+
+                                    >{(state.loading) ? <ReactLoading type="bars" className={styles.loader1} /> : "Send"}
+                                      
+                                    </button>
+
+
+
+
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </Modal>
+
 
 
                   <div
@@ -270,7 +439,7 @@ function Employee(props) {
 
                                 <div className="row p-3" key={index}>
 
-                                  <img src={`http://localhost:8093/api/test/employee/profile-image/${item?.empID}`} className={styles.img12} alt="..." />
+                                  <img src={`http://localhost:8093/api/test/employee/profile-image/${item?.empID}`}  style={{width:"20%",height:"20%",marginLeft:"2%",marginBottom:"2%"}} alt="..." />
 
                                   <div className={styles.itemName1}>
                                     Employee Id:  <span className={styles.ptext1}> {item?.empID}</span>

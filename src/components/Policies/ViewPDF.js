@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
-import axios from 'axios';
+import React from 'react'
 import styles from "./Policies.module.css"
+import { Modal, Button } from 'react-bootstrap';
+import { useState, useEffect } from "react";
+import axios from "axios";
 function ViewPdf(props) {
+    let token =localStorage.getItem("token");
     const [isLoading, setIsLoading] = useState(true);
-    const [viewPdf, setViewPdf] = useState(true);
+    const [viewPdf, setViewPdf] = useState(false);
     const closePdf = () => setViewPdf(false);
-    const openPdf = () => setViewPdf(true);
+    // const openPdf = () => setViewPdf(true);
     const [document, setDocument] = useState(null);
-    useEffect(() => {
-        axios.get(`http://localhost:8093/api/test/document/${props.name}`)
+    const openPdf = () =>  {
+        setViewPdf(true)
+        axios.get(`http://localhost:8093/api/test/document/${props.item.documentName}`,config)
             .then((response) => {
                 setDocument(response.data);
                 setIsLoading(false);
@@ -17,12 +20,17 @@ function ViewPdf(props) {
             .catch((error) => {
                 console.log(error.response.data);
             })
-    }, [])
+    }
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
     if (isLoading) {
         return (
-            <div>
-                {/* <Button variant='primary'  className={styles.btnbg} onClick={openPdf}>ViewPDF</Button> */}
-            </div>
+            
+                    <div className={"col-12 col-md-4 " +styles.card1 } onClick={openPdf}>{props.item.documentName}</div>
+                   
+              
+          
         )
     }
     return (
@@ -30,28 +38,28 @@ function ViewPdf(props) {
             <div>
                 <Modal
                     show={viewPdf}
-                    size='xl'
+                    size='lg'
                     fullscreen={'below lg'}
                 >
                     <Modal.Header closeButton onClick={closePdf}>
-                        <Modal.Title>{document['fileName']}</Modal.Title>
+                        <Modal.Title>{props.item.documentName}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <iframe
                             src={`data:application/pdf;base64,${document}`}
                             title={document['fileName']}
                             width='100%'
-                            height='650rem'
+                            height='500rem'
                         />
                     </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant='secondary' onClick={closePdf}>Close</Button>
-                    </Modal.Footer>
+                   
                 </Modal>
             </div>
-                {/* <Button variant='primary' className={styles.btnbg}  onClick={openPdf}>ViewPDF</Button> */}
-        </div>
+            
+            <div className={"col-12 col-md-4 " +styles.card1} onClick={openPdf}>{props.item.documentName}</div>
+            </div>   
     );
+
 }
 
-export default ViewPdf;
+export default ViewPdf

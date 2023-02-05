@@ -6,18 +6,15 @@
     font-size: large;
 }
 .display1{
-   
-    position: sticky;
-    margin-left: 10%;
-    margin-top:5%;
-    margin-right: 10%;
-    margin-bottom: 10%;
+    display: flex;
+    position: relative;
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
 }
-.cardSetup{
-    /* height: 300px !important; */
-    margin-top: 6%;
-    border: 0px !important;
-}
+
 .headerCrd{
     /* background-color: #F0E5EB; */
     border: 0px;
@@ -45,6 +42,12 @@
 
 
 .pheading {
+    color: #692038;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.eheading {
     color: #692038;
     font-weight: 600;
     font-size: 1.2rem;
@@ -112,13 +115,13 @@ cursor: pointer;
     
     
 }
-.model{
+/* .model{
     height:70%;
     width: 80%;
     align-items: center;
     align-self: center;
     border: #cf99bc;
-}
+} */
 .popup {
     position: fixed;
     top: 0;
@@ -183,14 +186,13 @@ font-size: 0.8rem;
 .subtn{
     background-color: #692038;
     color: white;
-    font-size: 15px;
+    font-size: 18px;
     border-color: #692038;
-    padding: 1% 1%;
-    border-radius: 5px;
-    margin-left: 88%;
-    margin-bottom: 1%;
     
-    width: 10%;
+    border-radius: 40px;
+    margin-left: 90%;
+    
+    width: 3%;
     cursor: pointer;
     }
     .subtn2{

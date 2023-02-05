@@ -1,84 +1,186 @@
-import React from "react";
+
 import styles from "./Policies.module.css"
 import ViewPdf from "./ViewPDF";
-
+import { FaSearch } from "react-icons/fa";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import NavBar from '../Nav/Navbar';
-const Card = (props) => {
+import React from 'react';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+
+
+
+function Policies(props) {
+  const [showButton, setShowButton] = useState(false);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  let token = localStorage.getItem("token") 
+  let role = "";
 
   
-return (
-<div className={styles.card1} onClick={props.onClick}>
-<h2 className={styles.policytitle}>{props.title}</h2>
-<img className={styles.policyimage}  src={props.image} alt={props.title} />
-</div>
-);
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  const [names, setNames] = useState([]);
+
+
+
+  const [state, setState] = useState({
+    file: "",
+  });
+  const [name, setName] = useState();
+  let formdata = new FormData();
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+ 
+
+
+
+
+  useEffect(() => {
+    role = localStorage.getItem("role")
+  if (role === "ROLE_ADMIN") {
+    setShowButton(true)
+  } else {
+
+    setShowButton(false)
+  }
+    axios.get("http://localhost:8093/api/test/documents/names", config).then((response) => {
+      setNames(response.data);
+    });
+  }, []);
+  //   console.log(names);
+
+
+  const getSearchTerm = (e) => {
+    e.preventDefault();
+
+     setSearchTerm(e.target.value);
+  };
+  if (searchTerm.length > 0) {
+    console.log(searchTerm)
+    names.filter((name) => {
+    return name.documentName.match(searchTerm);
+});
+
 }
 
-class CardRow extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { showPdf1: false };
-    this.state = { showPdf2: false };
-    this.state = { showPdf3: false };
-    this.state = { showPdf4: false };
-    this.state = { showPdf5: false };
+function handleFile(e) {
+  let file = e.target.files[0];
+  setState({ ...state, file: file });
+}
+function addPolicy(e) {
+  let file = state.file;
 
-  }
-
-  handleCodeOfConduct = () => {
-    this.setState({ showPdf1: true });
-  };
-  handlePrivacyPolicy = () => {
-    this.setState({ showPdf2: true });
-
-  };
-  handleCorporateGovernance  = () => {
-    this.setState({ showPdf3: true });
-  };
-  handleGiftCardPolicy  = () => {
-    this.setState({ showPdf4: true });
-  };
-
-  render() {
-    return (
-      <div>
-        <NavBar/>
-        <div className={styles.display}>
-      <div className="row ">
-        
-        <Card
-          title="Code Of Conduct"
-          image="https://www.i-sight.com/wp-content/uploads/2017/08/code-of-conduct-examples.jpg"
-          onClick={this.handleCodeOfConduct}
-        />
-        {this.state.showPdf1 && <ViewPdf name="CodeOfConduct" />}
-        
-
-        <Card
-          title="Privacy Policy               "
-          image="https://store.hp.com/app/assets/images/uploads/prod/updating-privacy-policy-hero1561043982812535.jpg"
-          onClick={this.handlePrivacyPolicy}
-        />
-        {this.state.showPdf2 && <ViewPdf name="PrivacyPolicy" />}
+  let formdata = new FormData();
+  console.log(name);
+  console.log(file);
+  formdata.append('documentId',name);
+  formdata.append('file', file);
+  console.log(formdata.documentId)
+  axios({
+    url: 'http://localhost:8093/api/test/add-document',
+    method: "POST",
+    data: formdata
+  }).then((response) => {
+    handleClose()
+    window.location.reload(true)
+    })
 
 
-        <Card
-          title="Corporate Governance"
-          image="https://studycafe.in/cdn-cgi/image/fit=contain,format=webp,gravity=auto,metadata=none,quality=80,width=768,height=468/wp-content/uploads/2018/12/corporate-governance.jpg"
-          onClick={this.handleCorporateGovernance}
-        />
-        {this.state.showPdf3 && <ViewPdf name="CorporateGovernance" />}
 
 
-        <Card
-          title="Gift Card Policy"
-          image="https://img.etimg.com/thumb/msid-45503399,width-1200,height-900,imgsize-22038,overlay-etwealth/photo.jpg"
-          onClick={this.handleGiftCardPolicy}
-        />
-        {this.state.showPdf4 && <ViewPdf name="GiftCardPolicy" />}
-      </div></div></div>
-    );
-  }
+
 }
 
-export default CardRow;
+
+
+  return (
+    <div>
+      <NavBar/>
+      <div >
+      <div className={styles.allpolicies} >
+      <div className="container-fluid p-5">
+      
+          <div className={styles.heading} style={{ textAlign: "center" }}>
+            Company Policies   {showButton && <button className={styles.subtn} onClick={handleShow}>Add Policy</button>}
+          </div>
+
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title><div className={"text-center " + styles.meheading}>Upload Policy</div></Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label><div className={styles.label}>Policy Name</div></Form.Label>
+                  <Form.Control 
+                    type="text"
+                    // placeholder="name@example.com"
+                    autoFocus
+                    onChange={(e) =>
+                      setName(e.target.value)
+                    }
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  {/* <Form.Label>Policy Name</Form.Label> */}
+                  <div className={styles.label}>
+                                      <input type="file" onChange={(e) =>
+                                                        handleFile(e)
+                                                    } /></div>
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              {/* <Button variant="light" onClick={handleClose}>
+                Close
+              </Button> */}
+              <Button className={styles.subtn}
+                variant="secondary"
+                onClick={(e) => {
+                  addPolicy(e);
+                }}
+              >
+                Add
+              </Button>
+            </Modal.Footer>
+          </Modal>
+          <div className={styles.search}>
+            <div>
+              <input
+                className={styles.input}
+                type="search"
+                placeholder="Search Policies"
+                onChange={(e) => setSearchTerm(e.target.value)}
+                value={searchTerm}
+                
+              />
+              <FaSearch className={styles.icon} />
+            </div>
+          </div>
+          {names.filter((name) =>
+          name.documentName.toLowerCase().includes(searchTerm.toLowerCase()))
+
+          ?.map((item, index) => {
+            
+            return (<div className="row"><ViewPdf item={item} index={index}/></div>);
+          })}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Policies;

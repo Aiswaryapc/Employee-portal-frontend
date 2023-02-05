@@ -77,7 +77,7 @@ function Profile(props) {
 
 
 
-                                                <img src={`http://localhost:8093/api/test/employee/profile-image/${emp.empID}`} className={styles.img} alt="..." />
+                                                <img src={`http://localhost:8093/api/test/employee/profile-image/${emp.empID}`} className={styles.img2385} alt="..." />
 
                                                 <div className="card-body mb-1">
                                                     <button className={styles.subtn2} onClick={(e) => {

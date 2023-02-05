@@ -147,7 +147,15 @@ function Product(props) {
                                                                                 <div class="col-md-12 col-lg-12 col-xl-12 offset-xl-1">
                                                                                     <div className={"card shadow " + styles.cardSetup}>
                                                                                         <div className={"card-header " + styles.headerCrd}>
-                                                                                            <div className={"text-center " + styles.eheading}>Product Details</div>
+                                                                                            <div className={"text-center " + styles.eheading}>Product Details
+                                                                                            <button
+                                                                                                        id="button"
+                                                                                                        onClick={(e) => setOpen(false)}
+                                                                                                        className={styles.subtn}
+
+                                                                                                    >
+                                                                                                        X
+                                                                                                    </button></div>
                                                                                         </div>
 
 
@@ -163,14 +171,7 @@ function Product(props) {
                                                                                             <div className={styles.des}> {modalData?.description}</div>
 
 
-                                                                                            <button
-                                                                                                id="button"
-                                                                                                onClick={(e) => setOpen(false)}
-                                                                                                className={styles.subtn}
-
-                                                                                            >
-                                                                                                Close
-                                                                                            </button>
+                                                                                
 
                                                                                         </div>
 
