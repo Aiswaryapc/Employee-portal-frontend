@@ -1,5 +1,4 @@
 .cardBody{
-    margin-top: 30%;
     position: relative;
     background-color: #F0E5EB;
     
@@ -42,7 +41,7 @@ color: #692038;
 }
 .subtn{
     background-color: #692038;
-    color: rgb(238, 232, 232);
+    color: white;
     font-size: 20px;
     /* flex-wrap: wrap; */
     padding: 5px 20px;

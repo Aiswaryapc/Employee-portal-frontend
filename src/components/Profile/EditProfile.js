@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./EditProfile.css";
+import styles from "./EditProfile.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NavBar from '../Nav/Navbar';
