@@ -3,6 +3,7 @@ import NavBar from '../Nav/Navbar';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Profile.module.css";
+import { useNavigate } from "react-router-dom";
 
 import Sidebar from '../Nav/SideBar';
 
@@ -10,6 +11,7 @@ function Profile(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [emp, setEmp] = useState();
     const [state, setState] = useState({ file: "" });
+    const navigate = useNavigate();
     let empId = "";
     useEffect(() => {
         empId = localStorage.getItem("empId")
@@ -23,6 +25,14 @@ function Profile(props) {
 
 
     }, []);
+    const handleClick=()=>{
+        const data = {
+            name:emp.name,
+            age:emp.age
+
+        };
+        navigate('/editProfile' ,{state : data});
+    };
 
 
     function handleFile(e) {
@@ -77,7 +87,7 @@ function Profile(props) {
 
 
 
-                                                <img src={`http://localhost:8093/api/test/employee/profile-image/${emp.empID}`} className={styles.img2385} alt="..." />
+                                                <img src={`http://localhost:8093/api/test/employee/profile-image/${emp.empID}`} className={styles.img} alt="..." />
 
                                                 <div className="card-body mb-1">
                                                     <button className={styles.subtn2} onClick={(e) => {
@@ -86,7 +96,8 @@ function Profile(props) {
                                                     }}>Upload Photo</button>
                                                     <input type="file" onChange={(e) =>
                                                         handleFile(e)
-                                                    } />
+                                                                                    } />
+                                <button className={styles.subtn2} href="#" onClick={(e) => {navigate("/editProfile")}}>Edit profile</button>
                                                     <div className={styles.name}>{emp.name}</div>
                                                     <div className={styles.name}>{emp.designation}</div>
 

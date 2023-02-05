@@ -20,6 +20,8 @@ import Profile from "./components/Profile/Profile";
 import Documents from "./components/Documents/Documents";
 import AddEmployee from "./components/Admin/AddEmployee";
 import Policies from "./components/Policies/Policies";
+import EditProfile from "./components/Profile/EditProfile";
+
 function App() {
   
   return (
@@ -54,6 +56,7 @@ function App() {
         <Route path="/docs" element={<Documents/>} />
         <Route path="/addEmployee" element={<AddEmployee/>} />
         <Route path="/policies" element={<Policies/>} />
+        <Route path="/editProfile" element={<EditProfile/>} />
 
        
         
