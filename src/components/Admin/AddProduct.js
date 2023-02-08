@@ -37,7 +37,7 @@ function AddProduct(props) {
                         <div class="col-md-12 col-lg-12 col-xl-12 offset-xl-1">
                             <div className={"card shadow " + styles.cardSetup}>
                                 <div className={"card-header " + styles.headerCrd}>
-                                    <div className={"text-center " + styles.eheading}>Add News</div>
+                                    <div className={"text-center " + styles.eheading}>Add Product</div>
                                 </div>
 
                                 <div

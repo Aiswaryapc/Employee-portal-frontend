@@ -91,7 +91,7 @@ function Project(props) {
                                         return (
                                             <div className={"col-12 col-md-4 pb-5 pt-3"} key={index}>
                                                 <div className={styles.zoom}>
-                                                    <div className={"card m-4 p-1 shadow-sm " + styles.pcrdSetup}>
+                                                    <div className={"card m-4 p-1 shadow-sm " + styles.pcrdSetup1} style={{backgroundColor:"#F0E5EB"}}>
 
                                                         <div className="row g-0">
 
@@ -198,12 +198,12 @@ function Project(props) {
                                                                                     <div className="row p-0" key={index1}>
 
                                                                                         <div className={styles.itemDes}>
-                                                                                            Name: <span className={styles.ptext1}>  {item1?.name}</span>
+                                                                                        <span className={styles.ptext3}>   Name</span><span className={styles.ptext2}>:</span> <span className={styles.ptext1}>  {item1?.name}</span>
 
                                                                                             {item1?.roles?.map((item2, index2) => {
                                                                                                 return (
                                                                                                     <div className={styles.itemName}>
-                                                                                                        Role:  <span className={styles.ptext1}> {item2?.name}</span>
+                                                                                                     <span className={styles.ptext3}>    Role </span><span className={styles.ptext2}>:</span>  <span className={styles.ptext1}> {item2?.name}</span>
                                                                                                     </div>)
                                                                                             })}</div>
 
@@ -241,10 +241,10 @@ function Project(props) {
                                                                                     <div className="row p-0" key={index1}>
 
                                                                                         <div className={styles.itemDes}>
-                                                                                            Name:  <span className={styles.ptext1}> {item1?.name}</span>
+                                                                                        <span className={styles.ptext3}>     Name </span> <span className={styles.ptext2}>: </span> <span className={styles.ptext1}> {item1?.name}</span>
 
                                                                                             <div className={styles.itemName}>
-                                                                                                Position: <span className={styles.ptext1}>  {item1?.position}</span>
+                                                                                            <span className={styles.ptext3}>   Organaization  </span><span className={styles.ptext2}>:</span> <span className={styles.ptext1}>  {item1?.organaization}</span>
                                                                                             </div></div>
 
 

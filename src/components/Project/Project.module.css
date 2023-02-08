@@ -23,7 +23,7 @@
 .bcolor {
     background-color: #F0E5EB;
 }
-.pcrdSetup{
+.pcrdSetup1{
     background-color: #F0E5EB;
 }
 
@@ -178,11 +178,35 @@ cursor: pointer;
     background-color: #F0E5EB;
     font-size: 0.7rem;
 }
-.ptext1{
-padding-left: 5%;
-color: #692038;
+.ptext3{
+padding-left: 2%;
+float: left;
+position: absolute;
 font-size: 0.8rem;
+
 }
+.ptext1{
+    padding-left: 10%;
+    padding-right: 5%;
+    float: right;
+    color: #692038;
+    font-size: 0.8rem;
+    position: absolute;
+    }
+.ptext2{
+    padding-left: 40%;
+    float: center;
+    color: #692038;
+    font-size: 0.8rem;
+  
+    }
+    .ptext4{
+        padding-left: 10%;
+        float: center;
+        color: #692038;
+        font-size: 0.8rem;
+        
+        }
 .subtn{
     background-color: #692038;
     color: white;

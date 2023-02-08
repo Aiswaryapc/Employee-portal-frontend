@@ -33,12 +33,13 @@
 }
 .cardSetup{
     /* height: 300px !important; */
-    margin-top: 6%;
+    margin-top: 10%;
     border: 0px !important;
 }
 .headerCrd{
     /* background-color: #F0E5EB; */
     border: 0px;
+   
 }
 .display{
     display: flex;
@@ -105,9 +106,27 @@
     padding: 0.4rem;
 }
 .ptext1{
-padding-left: 5%;
+padding-left: 50%;
 color: #692038;
 }
+.ptext123{
+    padding-left: 5%;
+    float: right;
+    color: #692038;
+    
+    }
+    .ptext2{
+        padding-left: 5%;
+        float: left;
+
+        position: absolute;
+        }
+        .ptext3{
+            padding-left: 30%;
+            float: center;
+            position: absolute;
+            color: #692038;
+            }
 .eheading input{
     padding: 10px;
     margin-right: 10px;

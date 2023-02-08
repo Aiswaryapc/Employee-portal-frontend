@@ -228,7 +228,7 @@ function Stakeholders(props) {
                                     {item?.name}
                                   </span>
 
-                                  <span className={styles.ptext1}> {item?.organaization}</span>
+                                  <span className={styles.ptext123}> {item?.organaization}</span>
 
 
 

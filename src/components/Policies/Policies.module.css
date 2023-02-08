@@ -24,6 +24,7 @@
     margin-top: 3%;
     margin-right: 2%;
     margin-left: 19%;
+    height: 20%;
     text-align: center;
     transition: all 0.4s ease-in-out;
     }
@@ -57,7 +58,7 @@
     font-weight: 500;
     margin-bottom: 3%;
     margin-top: 7%; 
-    margin-right: 4%;
+    margin-right: 20%;
     /* padding: 15px 15px 0px 0px; */
 
 }
@@ -148,3 +149,20 @@
         margin-top: 5% !important;
      
     } */
+
+    .del{
+        float: right;
+        margin-right: 3%;
+    }
+    .subtn12{
+        background-color: #692038;
+        color: white;
+        font-size: 16px;
+        border-color: #692038;
+       top: 1%;
+        border-radius: 15px;
+       margin-bottom: 6%;
+        
+        width: 100%;
+        cursor: pointer;
+        }

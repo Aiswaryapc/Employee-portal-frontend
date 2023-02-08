@@ -22,9 +22,19 @@
  display: flex;
 position: fixed;
 top: 1rem;
-right: 40px;
+right: 2px;
 width: 200px;
 }
+.navbuttons12{
+    display: flex;
+   position: fixed;
+   color: aliceblue;
+   font-size: 2.0rem;
+   font-weight: 600;
+   top: 0.5rem;
+   left:6%;
+   
+   }
 .button{
     
     color: white;
@@ -33,6 +43,6 @@ width: 200px;
     font-weight: 700;
     border-radius: 5px;
    
-    padding-left: 2rem;
+    margin-left: 100%;
     
 }

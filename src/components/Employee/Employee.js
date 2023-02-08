@@ -41,6 +41,7 @@ function Employee(props) {
   const [aOpen, setAOpen] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [showMButton, setShowMButton] = useState(false);
   let role = "";
   let token = "";
   useEffect(() => {
@@ -73,6 +74,12 @@ function Employee(props) {
     } else {
 
       setShowButton(false)
+    }
+    if (role === "ROLE_MANAGER") {
+      setShowMButton(true)
+    } else {
+
+      setShowMButton(false)
     }
 
 
@@ -193,6 +200,21 @@ function Employee(props) {
                           }}>
                             Send Announcement
                           </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>}
+                      
+                    {showMButton &&
+                      <Dropdown>
+                        <Dropdown.Toggle className={styles.btnbg} >
+                          More Options
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                          <Dropdown.Item href="#" onClick={() => {
+                            setOpen(true);
+                          }}>
+                            Assign Project
+                          </Dropdown.Item>
+                          
                         </Dropdown.Menu>
                       </Dropdown>}
                   </div>
@@ -421,7 +443,7 @@ function Employee(props) {
                                     </span>
                                     {item?.roles?.map((item1, index1) => {
                                       return (
-                                        <span className={styles.ptext1}> {item1?.name}</span>
+                                        <span className={styles.ptext123}> {item1?.name}</span>
                                       )
                                     })}
 
@@ -439,47 +461,47 @@ function Employee(props) {
 
                                 <div className="row p-3" key={index}>
 
-                                  <img src={`http://localhost:8093/api/test/employee/profile-image/${item?.empID}`}  style={{width:"20%",height:"20%",marginLeft:"2%",marginBottom:"2%"}} alt="..." />
+                                  <img src={`http://localhost:8093/api/test/employee/profile-image/${item?.empID}`}  style={{width:"20%",height:"20%",marginLeft:"2%",marginBottom:"2%"}} alt="😢" />
 
                                   <div className={styles.itemName1}>
-                                    Employee Id:  <span className={styles.ptext1}> {item?.empID}</span>
+                                  <span className={styles.ptext2}>  Employee Id  </span> <span className={styles.ptext3}> :</span>  <span className={styles.ptext1}> {item?.empID}</span>
                                   </div>
                                   <div className={styles.itemName1}>
-                                    Name:  <span className={styles.ptext1}> {item?.name}</span>
+                                  <span className={styles.ptext2}>   Name </span> <span className={styles.ptext3}> : </span> <span className={styles.ptext1}> {item?.name}</span>
                                   </div>
                                   <div className={styles.itemName1}>
-                                    Designation:  <span className={styles.ptext1}> {item?.designation}</span>
+                                  <span className={styles.ptext2}>  Designation </span><span className={styles.ptext3}> : </span> <span className={styles.ptext1}> {item?.designation}</span>
                                   </div>
                                   <div className={styles.itemName1}>
-                                    Role:   {item?.roles?.map((item1, index1) => {
+                                  <span className={styles.ptext2}> Role</span> <span className={styles.ptext3}> : </span>  {item?.roles?.map((item1, index1) => {
                                       return (
                                         <span className={styles.ptext1}> {item1?.name}</span>
                                       )
                                     })}
                                   </div>
                                   <div className={styles.itemName1}>
-                                    Age          :  <span className={styles.ptext1}> {item?.age}</span>
+                                  <span className={styles.ptext2}>  Age  </span><span className={styles.ptext3}>         :</span>  <span className={styles.ptext1}> {item?.age}</span>
                                   </div>
                                   <div className={styles.itemName1}>
-                                    Gender        :  <span className={styles.ptext1}> {item?.gender}</span>
+                                  <span className={styles.ptext2}>  Gender </span>  <span className={styles.ptext3}>      :</span>  <span className={styles.ptext1}> {item?.gender}</span>
                                   </div>
                                   <div className={styles.itemName1}>
-                                    Supervisor    :  <span className={styles.ptext1}> {item?.supervisor}</span>
+                                  <span className={styles.ptext2}>  Supervisor </span> <span className={styles.ptext3}>   : </span> <span className={styles.ptext1}> {item?.supervisor}</span>
                                   </div>
                                   <div className={styles.itemName1}>
-                                    Email         :  <span className={styles.ptext1}> {item?.email}</span>
+                                  <span className={styles.ptext2}> Email </span>  <span className={styles.ptext3}>       : </span> <span className={styles.ptext1}> {item?.email}</span>
                                   </div>
                                   <div className={styles.itemName1}>
-                                    Mobile Number :  <span className={styles.ptext1}> {item?.mobileNumber}</span>
+                                  <span className={styles.ptext2}>  Mobile Number</span><span className={styles.ptext3}>  :</span>  <span className={styles.ptext1}> {item?.mobileNumber}</span>
                                   </div>
                                   <div className={styles.itemName1}>
-                                    Address       :  <span className={styles.ptext1}> {item?.address}</span>
+                                  <span className={styles.ptext2}>   Address </span>  <span className={styles.ptext3}>     : </span> <span className={styles.ptext1}> {item?.address}</span>
                                   </div>
                                   <div className={styles.itemName1}>
-                                    City          :  <span className={styles.ptext1}> {item?.city}</span>
+                                  <span className={styles.ptext2}> City </span>   <span className={styles.ptext3}>       : </span> <span className={styles.ptext1}> {item?.city}</span>
                                   </div>
                                   <div className={styles.itemName1}>
-                                    State         :  <span className={styles.ptext1}> {item?.state}</span>
+                                  <span className={styles.ptext2}> State  </span>   <span className={styles.ptext3}>     : </span> <span className={styles.ptext1}> {item?.state}</span>
                                   </div>
 
                                 </div>

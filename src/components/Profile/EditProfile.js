@@ -34,7 +34,7 @@ function EditProfile(props) {
     const [user, setUser] = useState({
       name: "",
       gender: "",
-      age: 5,
+      age: 0,
       designation:"",
       address: "",
       city: "",
@@ -209,6 +209,7 @@ function EditProfile(props) {
                           <input
                             type="text"
                             value={user.age}
+                            
                             onChange={(e) =>
                               setUser({ ...user, age: e.target.value })
                             }
